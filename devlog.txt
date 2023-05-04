@@ -22,3 +22,12 @@ Group -- 4-28-23
 -------------------------------------------------------------
 Worked on brainstorming project ideas
 ==============================================================
+
+
+emersonG -- 2022-05-04 12:51
+--------------------------------------------------------------
+feedback from design doc review:
+ *Suggested that we lower our goals because they seemed too difficult to reach in our time limit
+ *Needed to add more details like component map
+ *Clarify how the aspects such as the survey and search bar would be used and if they were needed
+ ==============================================================
