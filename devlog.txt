@@ -42,3 +42,8 @@ anjiniK -- 2022-05-04 12:59
 * worked on flag
 * Uploaded flag and design doc
  ==============================================================
+
+danielL -- 2022-05-04 13:03
+--------------------------------------------------------------
+Started login and registration. Added HTML templates for login/register. Update file structure.
+ ==============================================================
