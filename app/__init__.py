@@ -8,7 +8,7 @@ import db
 
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
-#db.setup()
+db.setup()
 
 @app.route('/')
 def index():
@@ -40,7 +40,7 @@ def register():
         if db.add_account(userIn, passIn) == -1:
             return render_template("error.html", msg = f"account with username {userIn} already exists")
         else:
-            return render_template("register_success.html")
+            return render_template("login.html")
     return render_template("registration.html")
 
 @app.route('/home')

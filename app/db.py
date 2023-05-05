@@ -46,6 +46,10 @@ def get_table_contents(tableName):
     db.close()
     return out
 
+def setup():
+    users_header = ("(username TEXT, password TEXT)")
+    create_table("userInfo",users_header)
+    
 '''
 def get_table_specifics(tableName, search):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
