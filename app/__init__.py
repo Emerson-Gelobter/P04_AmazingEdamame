@@ -52,6 +52,7 @@ def home():
     if db.verify_account(username, password):
         return render_template('home_page.html',username = session['username'])
 
+
 def verify_session():
     if 'username' in session and 'password' in session:
         if db.verify_account(session['username'], session['password']):
@@ -62,6 +63,10 @@ def verify_session():
 def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
+
+@app.route("/survey")
+def survey():
+    return render_template("survey.html")
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified
