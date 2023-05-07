@@ -52,3 +52,8 @@ danielL -- 2022-05-04 23:45
 --------------------------------------------------------------
 Add updated Design Doc. Edited component map to be more clear and specific regarding interactions between app elements.
  ==============================================================
+
+danielL -- 2022-05-06 21:42
+--------------------------------------------------------------
+Added all datasets (neighborhood, financials,sales) into sqlite databases. Put dataset csv folders into static/Datasets. Started work on geolocation API.
+ ==============================================================
