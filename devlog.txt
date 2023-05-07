@@ -56,4 +56,9 @@ Add updated Design Doc. Edited component map to be more clear and specific regar
 danielL -- 2022-05-06 21:42
 --------------------------------------------------------------
 Added all datasets (neighborhood, financials,sales) into sqlite databases. Put dataset csv folders into static/Datasets. Started work on geolocation API.
- ==============================================================
+==============================================================
+
+danielL -- 2022-05-07 12:50
+--------------------------------------------------------------
+Added geolocation functions. Added JS Link. Working on D3.js for graphs.
+==============================================================
