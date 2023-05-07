@@ -85,7 +85,7 @@ def setup():
     Community_District_No TEXT, Poverty_Index FLOAT, Median_Income INTEGER, Percent_White FLOAT, 
     Percent_Black FLOAT, Percent_Asian FLOAT, Percent_Other FLOAT, Percent_Hispanic FLOAT )''')
     create_table("financials_info",financials_header)
-    with open("static/Datasets/Financials.csv") as financials_csv:
+    with open("static/Datasets/Financials.csv","r") as financials_csv:
         db_2 = sqlite3.connect(DB_FILE, check_same_thread=False)
         c_2 = db_2.cursor()
         csv_reader = csv.reader(financials_csv)
