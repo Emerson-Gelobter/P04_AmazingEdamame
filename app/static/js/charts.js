@@ -1,4 +1,4 @@
-{/* <script src="https://d3js.org/d3.v7.min.js%22%3E"> </script> */}
+<script src="https://d3js.org/d3.v7.min.js%22%3E"> </script>
 
 //Fib
 // function fib(n){
@@ -30,8 +30,16 @@
 //   //addFib(fib(10))
 // }
 //=================================
+const data = [1,2,3,4]
+const width = 420;
+x = d3.scaleLinear()
+    .domain([0,d3.max(data)])
+    .range([0,width])
+y = d3.scaleBand()
+    .domain(d3.range(data.length))
+    .range([0,20 * data.length])
 
-function sales(data){
+function sales(){
   const div = d3.create("div")
      .style("font", "10px sans-serif")
      .style("text-align", "right")
@@ -47,7 +55,7 @@ function sales(data){
      .text(d => d);
 
   return div.node();
- }
+}
 
 //====================
 
