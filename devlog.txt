@@ -68,3 +68,15 @@ danielL -- 2022-05-08 21:52
 Added HTML Template that loaded in geojson file data for rendering. Working on loading data through database call.
 ==============================================================
 
+mayQ -- 2022-05-08 12:50
+--------------------------------------------------------------
+ * Started the js to create visuals with information from the database
+==============================================================
+
+anjiniK -- 2022-05-08 22:24
+--------------------------------------------------------------
+ * found code to implement pie chart 
+ * realized we need to use sqlite with js -> started looking into how to do that 
+   * found something promising but will continue implementation tomorrow 
+==============================================================
+

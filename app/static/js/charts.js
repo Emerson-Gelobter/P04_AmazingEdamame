@@ -1,44 +1,68 @@
-<script src="https://d3js.org/d3.v7.min.js%22%3E"> </script>
+{/* <script src="https://d3js.org/d3.v7.min.js%22%3E"> </script> */}
 
 //Fib
-function fib(n){
-    if (n == 0 || n == 1){
-        return n
-    }else{
-        return (fib(n-1) + fib(n-2))
-    }
-  }
+// function fib(n){
+//     if (n == 0 || n == 1){
+//         return n
+//     }else{
+//         return (fib(n-1) + fib(n-2))
+//     }
+//   }
 
 
-  var addFib = function(text) {
-    var list = document.getElementById("fiblist");
-    var newitem = document.createElement("li");
-    newitem.innerHTML = text;
-    list.appendChild(newitem);
-  };
+//   var addFib = function(text) {
+//     var list = document.getElementById("fiblist");
+//     var newitem = document.createElement("li");
+//     newitem.innerHTML = text;
+//     list.appendChild(newitem);
+//   };
 
-// FIB BUTTONs
-var fb = document.getElementById("fibbutton")
-fibbutton.addEventListener('click', fibaction)
-//addFib("works up to here")
+// // FIB BUTTONs
+// var fb = document.getElementById("fibbutton")
+// fibbutton.addEventListener('click', fibaction)
+// //addFib("works up to here")
 
-function fibaction() {
-  var ans = document.createElement("li")
-  //ans.innerHTML = fib(Number(document.getElementById('fibinput').getAttribute()))
-  ans.innerHTML= document.getElementById('fibinput').value + ": " + fib(Number(document.getElementById('fibinput').value))
-  document.getElementById("fiblist").appendChild(ans)
-  //addFib(fib(10))
-}
+// function fibaction() {
+//   var ans = document.createElement("li")
+//   //ans.innerHTML = fib(Number(document.getElementById('fibinput').getAttribute()))
+//   ans.innerHTML= document.getElementById('fibinput').value + ": " + fib(Number(document.getElementById('fibinput').value))
+//   document.getElementById("fiblist").appendChild(ans)
+//   //addFib(fib(10))
+// }
 //=================================
+
+function sales(data){
+  const div = d3.create("div")
+     .style("font", "10px sans-serif")
+     .style("text-align", "right")
+     .style("color", "white");
+
+  div.selectAll("div")
+     .data(data)
+     .join("div")
+     .style("background", "steelblue")
+     .style("padding", "3px")
+     .style("margin", "1px")
+     .style("width", d => `${d * 10}px`)
+     .text(d => d);
+
+  return div.node();
+ }
+
+//====================
 
 //imports
 const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('./app/zetten.db', (err) => {
   if (err) {
-    console.error("whoops");
+    console.log("whoops");
   }
   console.log('we connected');
 });
+
+function pleasework(){
+  
+}
 
 // charts for economics (yes, we need to keep the copyright...apparently)
 // Copyright 2021 Observable, Inc.

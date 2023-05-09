@@ -19,11 +19,33 @@
         
         <body id="foo">
             <li> whee?</li>
+
+
+
         </body>
+        <form>
+            <div class="form-group">
+              <label for="neighborhood">Neighborhood Preference</label>
+              <input type="Neighborhood" class="form-control" id="neighborhood" aria-describedby="neighborhood" placeholder="Enter neighborhood">
+              <small id="neighborhood" class="form-text text-muted">Enter your prefered neighborhood.</small>
+            </div>
+            <div class="form-group">
+                <label for="priceRange">Price Range</label>
+                <select id="priceRange" class="form-control">
+                  <option selected>Choose...</option>
+                  <option>Range</option>
+                  <option>Range</option>
+                  <option>etc</option>
+                </select>
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
 
         <br>
          <form action = "/home" method = "GET"> <input type = "submit" value = "back" class="btn btn-link"></form>
         </div>
+
+
 
     </body>
     
