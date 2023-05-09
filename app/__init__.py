@@ -68,6 +68,10 @@ def logout():
 def survey():
     return render_template("survey.html")
 
+@app.route("/map")
+def map():
+    return render_template("map.html")
+
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified
     app.debug = True
