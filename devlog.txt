@@ -62,3 +62,9 @@ danielL -- 2022-05-07 12:50
 --------------------------------------------------------------
 Added geolocation functions. Added JS Link. Working on D3.js for graphs.
 ==============================================================
+
+danielL -- 2022-05-08 21:52
+--------------------------------------------------------------
+Added HTML Template that loaded in geojson file data for rendering. Working on loading data through database call.
+==============================================================
+
