@@ -80,3 +80,9 @@ anjiniK -- 2022-05-08 22:24
    * found something promising but will continue implementation tomorrow 
 ==============================================================
 
+danielL -- 2022-05-10 00:06
+--------------------------------------------------------------
+Updated database to remove the column names. Updated readme/requirements and worked on maps that render geojson files.
+DATA CONDUIT: In order to show a graph, the database needs to be queried for the relevant information. Our plan was to open
+a sqlite connection to the database that would allow us to run commands to select records. It seems that node.js or sql.js is needed to get this data to the frontend.
+==============================================================
