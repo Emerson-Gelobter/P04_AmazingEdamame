@@ -54,7 +54,7 @@ def setup():
 
     neighbors_header = ("(Name TEXT,Borough TEXT,Coordinates TEXT)")
     create_table("neighborhoods",neighbors_header)
-    with open ("static/Datasets/Neighborhoods.csv","r") as neighbors_csv:
+    with open ("static/datasets/Neighborhoods.csv","r") as neighbors_csv:
         db = sqlite3.connect(DB_FILE, check_same_thread=False)
         c = db.cursor()
         csv_reader = csv.reader(neighbors_csv)
@@ -69,7 +69,7 @@ def setup():
     sales_header = ('''(Borough TEXT, Neighborhood TEXT, Type TEXT, Sales_Amount INTEGER, 
     Lowest INTEGER, Average INTEGER, Median INTEGER, Highest INTEGER, Year INTEGER)''')
     create_table("sales_info",sales_header)
-    with open ("static/Datasets/Sales.csv","r") as sales_csv:
+    with open ("static/datasets/Sales.csv","r") as sales_csv:
         db_1 = sqlite3.connect(DB_FILE, check_same_thread=False)
         c_1 = db_1.cursor()
         csv_reader = csv.reader(sales_csv)
@@ -85,7 +85,7 @@ def setup():
     Community_District_No TEXT, Poverty_Index FLOAT, Median_Income INTEGER, Percent_White FLOAT, 
     Percent_Black FLOAT, Percent_Asian FLOAT, Percent_Other FLOAT, Percent_Hispanic FLOAT )''')
     create_table("financials_info",financials_header)
-    with open("static/Datasets/Financials.csv","r") as financials_csv:
+    with open("static/datasets/Financials.csv","r") as financials_csv:
         db_2 = sqlite3.connect(DB_FILE, check_same_thread=False)
         c_2 = db_2.cursor()
         csv_reader = csv.reader(financials_csv)

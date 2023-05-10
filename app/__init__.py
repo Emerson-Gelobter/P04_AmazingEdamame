@@ -3,8 +3,6 @@ from flask import render_template, request   #facilitate jinja templating
 from flask import session, redirect, url_for, make_response        #facilitate form submission
 import os
 import db
-#the conventional way:
-#from flask import Flask, render_template, request
 
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
