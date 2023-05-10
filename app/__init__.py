@@ -30,6 +30,10 @@ def login():
         resp = make_response(render_template('error.html',msg = "Username or Password is not correct"))
         return resp
 
+@app.route('/info')
+def info():
+    return render_template('moreinfo.html')
+
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -62,8 +66,8 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
 
-@app.route("/survey")
-def survey():
+@app.route("/survey", methods = ['GET','POST'])
+def survey(): 
     return render_template("survey.html")
 
 @app.route("/map")
