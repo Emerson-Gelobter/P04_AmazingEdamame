@@ -3,20 +3,19 @@
 <head>
 
   <title>World Map</title>
-  <script src="https://d3js.org/d3.v6.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"> </script>
 </head>
 
 <body>
 
   <!-- Create an element where the map will take place -->
-  <canvas id="my_dataviz" width="700" height="500"></canvas>
+  <canvas id="dataviz" width="700" height="500"></canvas>
   <script>
 
-  // Map and projection
   // select the canvas element created in the html.
-  var canvas = document.getElementById('my_dataviz');
+  var canvas = document.getElementById('dataviz');
 
-  // Actual width and height. No idea if clienWidth would be a better option..?
+  // Actual width and height
   var width = canvas.offsetWidth
   var height = canvas.offsetHeight
 
@@ -44,44 +43,26 @@
     // Got the positions of the path
     pathGenerator(data);
 
-    // Fill the paths
-    ctx.fillStyle = "#999";
+    // Fills in the countries
+    ctx.fillStyle = "#888";
     ctx.fill();
 
-    // Add stroke
+    // Adds in the borders
     ctx.strokeStyle = "#69b3a2";
     ctx.stroke()
   })
-
-  d3.json('../static/datasets/Neighborhood.geojson').then((geoData) => {
-      // Create projection and path generator
-      var projection = d3.geoMercator().fitSize([700, 500], geoData);
-      var pathGenerator = d3.geoPath().projection(projection);
-
-       // initialize the path
-      ctx.beginPath();
-
-      // Got the positions of the path
-      pathGenerator(geoData);
-
-      // Fill the paths
-      ctx.fillStyle = "#999";
-      ctx.fill();
-
-    //   // Draw the map
-    // svg.append("g")
-    //     .selectAll("path")
-    //     .data(data.features)
-    //     .join("path")
-    //         .attr("fill", "#69b3a2")
-    //         .attr("d", d3.geoPath()
-    //         .projection(projection)
-    //         )
-    //         .style("stroke", "#fff")
-      
-    });
-  
     
   </script>
+
+  <div id = "received"></div>
+  <script>
+  const url = window.location.href + 'test';
+
+  fetch(url).then(res => res.json()).then(data => {
+    // Printing that data to a div in HTML
+    document.getElementById('received').innerText = data;
+  })
+</script>
+
 </body>
 </html>
