@@ -35,32 +35,33 @@
   // ctx.fillRect(0, 0, width, height);
 
 // Load external data and boot
-  d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then( function(data) {
+  // d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then( function(data) {
 
-     // initialize the path
-    ctx.beginPath();
+  //    // initialize the path
+  //   ctx.beginPath();
 
-    // Got the positions of the path
-    pathGenerator(data);
+  //   // Got the positions of the path
+  //   pathGenerator(data);
 
-    // Fills in the countries
-    ctx.fillStyle = "#888";
-    ctx.fill();
+  //   // Fills in the countries
+  //   ctx.fillStyle = "#888";
+  //   ctx.fill();
 
-    // Adds in the borders
-    ctx.strokeStyle = "#69b3a2";
-    ctx.stroke()
-  })
+  //   // Adds in the borders
+  //   ctx.strokeStyle = "#69b3a2";
+  //   ctx.stroke()
+  // })
     
   </script>
 
   <div id = "received"></div>
   <script>
-  const url = window.location.href + 'test';
+  const url = 'http://127.0.0.1:5000/map';
 
   fetch(url).then(res => res.json()).then(data => {
     // Printing that data to a div in HTML
     document.getElementById('received').innerText = data;
+    console.log(data);
   })
 </script>
 
