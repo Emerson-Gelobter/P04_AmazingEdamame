@@ -63,6 +63,11 @@ danielL -- 2022-05-07 12:50
 Added geolocation functions. Added JS Link. Working on D3.js for graphs.
 ==============================================================
 
+emersonG -- 2022-05-07 16:45
+--------------------------------------------------------------
+Worked on html and front end for survey page
+==============================================================
+
 danielL -- 2022-05-08 21:52
 --------------------------------------------------------------
 Added HTML Template that loaded in geojson file data for rendering. Working on loading data through database call.
@@ -85,4 +90,22 @@ danielL -- 2022-05-10 00:06
 Updated database to remove the column names. Updated readme/requirements and worked on maps that render geojson files.
 DATA CONDUIT: In order to show a graph, the database needs to be queried for the relevant information. Our plan was to open
 a sqlite connection to the database that would allow us to run commands to select records. It seems that node.js or sql.js is needed to get this data to the frontend.
+==============================================================
+
+anjiniK -- 2022-05-10 21:17
+--------------------------------------------------------------
+ * fixed the overall d3 issue (files in place and we can now import it)
+ * fixed js module issue 
+ * made progress on getting the pie chart up 
+   * current issue is that we need function from d3 array that d3 doesn't have (ie maps)
+==============================================================
+
+mayQ -- 2022-05-10 21:17
+--------------------------------------------------------------
+ *  worked on Survey page and storing preferences into the survey database
+==============================================================
+
+emersonG -- 2022-05-07 21:26
+--------------------------------------------------------------
+Worked on charts and js to help create line graph wwith d3.
 ==============================================================
