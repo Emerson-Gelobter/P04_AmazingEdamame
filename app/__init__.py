@@ -76,7 +76,7 @@ def map():
 
 @app.route("/test")
 def test():
-    return '{"batman: 1":}'
+    return "{batman: 1}"
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified

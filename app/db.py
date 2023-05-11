@@ -29,7 +29,12 @@ def check_username(username):
         if account[0] == username:
             return True
     return False
-    
+def check_username_survey(username):
+    accounts = get_table_contents("surveyPreference")
+    for account in accounts:
+        if account[0] == username:
+            return True
+    return False
 #return true if username and password are in db, false if one isn't
 def verify_account(username, password):
     accounts = get_table_contents("userInfo")
@@ -51,7 +56,7 @@ def setup():
 
     users_header = ("(username TEXT, password TEXT)")
     create_table("userInfo",users_header)
-
+    
     survey_header = ("(username Text, neighborhood Text, price Text, priority Text, secpriority Text)")
     create_table("surveyPreference", survey_header)
 
@@ -100,22 +105,25 @@ def setup():
     c_2.close()
     db_2.commit()
 
-def get_table_specifics(tableName, search):
+def get_table_specifics(tableName, search,search1):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    res = c.execute(f"SELECT {search} from {tableName}")
+    res = c.execute(f"SELECT {search} AND {search1} from {tableName}")
     out = res.fetchall()
     db.commit()
     db.close()
     return out
 
 def add_survey(username, neighborhood, price, priority, secpriority ):
-    users = get_table_contents("Survey")
-    for account in accounts:
-        if account[0] == username:
-            return True
-    return False
-    if not(check_username(username)):
-        query("INSERT INTO userInfo VALUES (?, ?)", (username, password))
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    if (check_username_survey(username)):
+        c.execute("UPDATE surveyPreference SET (?, ?, ?, ?) WHERE username = ?", (neighborhood, price, priority, secpriority, username))
     else:
-        return -1
+        c.execute("INSERT INTO surveyPreference (?,?,?,?,?)", (username, neighborhood, price, priority, secpriority))
+    db.commit()
+    db.close()
+        
+
+    
+    
