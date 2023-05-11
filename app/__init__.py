@@ -6,7 +6,7 @@ import db
 
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
-db.setup()
+
 
 @app.route('/')
 def index():
