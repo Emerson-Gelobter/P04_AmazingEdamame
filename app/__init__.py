@@ -74,7 +74,7 @@ def survey():
 def map():
     return render_template("map.html")
 
-@app.route("/test")
+@app.route("/neighborsData")
 def test():
     return db.get_table_contents("neighborhoods")
 
