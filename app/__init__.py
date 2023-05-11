@@ -6,7 +6,7 @@ import db
 
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
-db.setup()
+
 
 @app.route('/')
 def index():
@@ -82,9 +82,13 @@ def survey():
 def map():
     return render_template("map.html")
 
-@app.route("/test")
+@app.route("/neighborsData")
 def test():
+<<<<<<< HEAD
+    return db.get_table_contents("neighborhoods")
+=======
     return "{batman: 1}"
+>>>>>>> bfb627b4bcaa5ddb2b857016ddfc5b83e7037004
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified

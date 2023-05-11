@@ -61,17 +61,17 @@ def setup():
     survey_header = ("(username Text, neighborhood Text, price Text, priority Text, secpriority Text)")
     create_table("surveyPreference", survey_header)
 
-    neighbors_header = ("(Name TEXT,Borough TEXT,Coordinates TEXT)")
+    neighbors_header = ("(Latitude FLOAT,Longitude FLOAT,Name TEXT,Borough TEXT)")
     create_table("neighborhoods",neighbors_header)
-    with open ("static/datasets/Neighborhoods.csv","r") as neighbors_csv:
+    with open ("static/datasets/neighborhoods.csv","r") as neighbors_csv:
         db = sqlite3.connect(DB_FILE, check_same_thread=False)
         c = db.cursor()
         csv_reader = csv.reader(neighbors_csv)
         for row in csv_reader:
             c.execute('''
-                INSERT INTO neighborhoods (Name,Borough,Coordinates)
-                VALUES (?, ?, ?)
-            ''', (row[2],row[8],row[0]))
+                INSERT INTO neighborhoods (Latitude,Longitude,Name,Borough)
+                VALUES (?, ?, ?,?)
+            ''', (row[0],row[1],row[3],row[9]))
     c.close()
     db.commit()
     
