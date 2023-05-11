@@ -33,15 +33,23 @@ https://data.cityofnewyork.us/Business/Neighborhood-Financial-Health-Digital-Map
  ```bash
  pip install -r requirements.txt
  ```
+
 3. `cd` into the app directory
 
  ```bash
  cd app/
  ```
-4. Start Flask server
+
+4. Set up the database
+
+ ```bash
+ python setup_database.py
+ ```
+
+5. Start Flask server
 
  ```bash
  python __init__.py
  ```
 
-5. Visit `http://127.0.0.1:5000/` in browser
+6. Visit `http://127.0.0.1:5000/` in browser
