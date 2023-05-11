@@ -52,6 +52,9 @@ def setup():
     users_header = ("(username TEXT, password TEXT)")
     create_table("userInfo",users_header)
 
+    survey_header = ("(username Text, neighborhood Text, price Text, priority Text, secpriority Text)")
+    create_table("surveyPreference", survey_header)
+
     neighbors_header = ("(Name TEXT,Borough TEXT,Coordinates TEXT)")
     create_table("neighborhoods",neighbors_header)
     with open ("static/datasets/Neighborhoods.csv","r") as neighbors_csv:
@@ -96,7 +99,7 @@ def setup():
             ''', (row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11]))
     c_2.close()
     db_2.commit()
-   
+
 def get_table_specifics(tableName, search):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
@@ -105,3 +108,14 @@ def get_table_specifics(tableName, search):
     db.commit()
     db.close()
     return out
+
+def add_survey(username, neighborhood, price, priority, secpriority ):
+    users = get_table_contents("Survey")
+    for account in accounts:
+        if account[0] == username:
+            return True
+    return False
+    if not(check_username(username)):
+        query("INSERT INTO userInfo VALUES (?, ?)", (username, password))
+    else:
+        return -1
