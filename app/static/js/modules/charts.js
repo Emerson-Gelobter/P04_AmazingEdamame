@@ -3,7 +3,6 @@ import map from "./src/map.js";
 import range from "./src/range.js";
 
 
-
 console.log(("pies!"))
 console.log(values)
 
@@ -35,6 +34,8 @@ function PieChart(data, {
   // Unique the names.
   if (names === undefined) names = N;
   names = new d3.InternSet(names);
+  // check for js syntax errors 
+
 
   // Chose a default color scheme based on cardinality.
   if (colors === undefined) colors = d3.schemeSpectral[names.size];
@@ -105,6 +106,8 @@ chart = PieChart(values, {
   value: d => d.value,
   width: 500,
   height: 500,
+  new d3.InternSet(names)
+
 })
 
 

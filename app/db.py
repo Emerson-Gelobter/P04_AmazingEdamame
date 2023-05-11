@@ -50,6 +50,7 @@ def get_table_contents(tableName):
     out = res.fetchall()
     db.commit()
     db.close()
+    print(out)
     return out
 
 def setup():
@@ -118,12 +119,12 @@ def add_survey(username, neighborhood, price, priority, secpriority ):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     if (check_username_survey(username)):
-        c.execute("UPDATE surveyPreference SET (?, ?, ?, ?) WHERE username = ?", (neighborhood, price, priority, secpriority, username))
+        c.execute("UPDATE surveyPreference SET (?, ?, ?, ?) WHERE username = ?(neighborhood, price, priority, secpriority, username)")
     else:
-        c.execute("INSERT INTO surveyPreference (?,?,?,?,?)", (username, neighborhood, price, priority, secpriority))
+        c.execute('''INSERT INTO surveyPreference (username, neighborhood, price, priority, secpriority)(?,?,?,?,?)''')
+    get_table_contents(surveyPreference)
     db.commit()
     db.close()
-        
 
     
     

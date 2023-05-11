@@ -68,6 +68,14 @@ def logout():
 
 @app.route("/survey", methods = ['GET','POST'])
 def survey(): 
+    user = "nothing"
+    neighborhood_preference = request.form.get('neighborhood')
+    price_range = request.form.get('priceRange') 
+    priority = request.form.get('priority') 
+    sec_priority = request.form.get('secondpriority') 
+    if 'username' in session:
+        user = session['username']
+    db.add_survey(user, neighborhood_preference, price_range, priority, sec_priority)
     return render_template("survey.html")
 
 @app.route("/map")
