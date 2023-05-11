@@ -1,4 +1,12 @@
 import * as d3 from "./d3.js";
+import {PieChart} from "/d3/pie-chart"
+
+var values = [20, 40, 10, 30];
+
+console.log(("pies!"))
+console.log(values)
+// document.getElementById("piechart").appendChild(values)
+
 
 //Fib
 // function fib(n){
@@ -70,11 +78,3 @@ function sales(){
 //import {LineChart} from "@d3/line-chart"
 //return
 
-
-
-import {PieChart} from "@d3/pie-chart"
-values = array(4) [20, 40, 10, 30]
-
-console.log(("pies!"))
-console.log(PieChart(values))
-document.getElementById("piechart").appendChild(PieChart(values))
