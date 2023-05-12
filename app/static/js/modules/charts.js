@@ -4,7 +4,9 @@ import range from "./src/range.js";
 
 
 console.log(("pies!"))
-console.log(values)
+
+names = new d3.InternSet(names);
+
 
 // Copyright 2021 Observable, Inc.
 // Released under the ISC license.
@@ -32,10 +34,11 @@ function PieChart(data, {
   const I = range(N.length).filter(i => !isNaN(V[i]));
 
   // Unique the names.
-  if (names === undefined) names = N;
-  names = new d3.InternSet(names);
-  // check for js syntax errors 
-
+  if (names === undefined){ 
+    names = N;
+    names = new d3.InternSet(names);
+  }
+  
 
   // Chose a default color scheme based on cardinality.
   if (colors === undefined) colors = d3.schemeSpectral[names.size];
@@ -106,13 +109,13 @@ chart = PieChart(values, {
   value: d => d.value,
   width: 500,
   height: 500,
-  new d3.InternSet(names)
+  names: new d3.InternSet(names),
 
 })
 
 
 
-// =====================
+// ==================================================
 
 //Fib
 // function fib(n){
@@ -173,7 +176,7 @@ function sales(){
 
 
 
-//====================
+//================================================
 
 //imports
 // const sqlite3 = require('sqlite3').verbose();
