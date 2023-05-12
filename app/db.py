@@ -125,6 +125,3 @@ def add_survey(username, neighborhood, price, priority, secpriority ):
     get_table_contents("surveyPreference")
     db.commit()
     db.close()
-
-    
-    
