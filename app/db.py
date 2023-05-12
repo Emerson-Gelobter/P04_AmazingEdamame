@@ -122,7 +122,7 @@ def add_survey(username, neighborhood, price, priority, secpriority ):
         c.execute("UPDATE surveyPreference SET (?, ?, ?, ?) WHERE username = ?(neighborhood, price, priority, secpriority, username)")
     else:
         c.execute('''INSERT INTO surveyPreference (username, neighborhood, price, priority, secpriority)(?,?,?,?,?)''')
-    get_table_contents(surveyPreference)
+    get_table_contents("surveyPreference")
     db.commit()
     db.close()
 
