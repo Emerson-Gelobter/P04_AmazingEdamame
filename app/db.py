@@ -50,7 +50,6 @@ def get_table_contents(tableName):
     out = res.fetchall()
     db.commit()
     db.close()
-    print(out)
     return out
 
 def setup():
@@ -71,14 +70,14 @@ def setup():
             c.execute('''
                 INSERT INTO neighborhoods (Latitude,Longitude,Name,Borough)
                 VALUES (?, ?, ?,?)
-            ''', (row[0],row[1],row[3],row[9]))
+            ''', (row[1],row[0],row[3],row[9]))
     c.close()
     db.commit()
     
     sales_header = ('''(Borough TEXT, Neighborhood TEXT, Type TEXT, Sales_Amount INTEGER, 
     Lowest INTEGER, Average INTEGER, Median INTEGER, Highest INTEGER, Year INTEGER)''')
     create_table("sales_info",sales_header)
-    with open ("static/datasets/Sales.csv","r") as sales_csv:
+    with open ("static/datasets/sales.csv","r") as sales_csv:
         db_1 = sqlite3.connect(DB_FILE, check_same_thread=False)
         c_1 = db_1.cursor()
         csv_reader = csv.reader(sales_csv)
@@ -94,7 +93,7 @@ def setup():
     Community_District_No TEXT, Poverty_Index FLOAT, Median_Income INTEGER, Percent_White FLOAT, 
     Percent_Black FLOAT, Percent_Asian FLOAT, Percent_Other FLOAT, Percent_Hispanic FLOAT )''')
     create_table("financials_info",financials_header)
-    with open("static/datasets/Financials.csv","r") as financials_csv:
+    with open("static/datasets/financials.csv","r") as financials_csv:
         db_2 = sqlite3.connect(DB_FILE, check_same_thread=False)
         c_2 = db_2.cursor()
         csv_reader = csv.reader(financials_csv)
@@ -106,10 +105,10 @@ def setup():
     c_2.close()
     db_2.commit()
 
-def get_table_specifics(tableName, search,search1):
+def get_latitude_longitudes():
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    res = c.execute(f"SELECT {search} AND {search1} from {tableName}")
+    res = c.execute(f"SELECT latitude AND longitude from neighborhoods")
     out = res.fetchall()
     db.commit()
     db.close()

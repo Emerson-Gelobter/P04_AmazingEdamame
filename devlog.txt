@@ -68,6 +68,11 @@ emersonG -- 2022-05-07 16:45
 Worked on html and front end for survey page
 ==============================================================
 
+emersonG -- 2022-05-07 21:26
+--------------------------------------------------------------
+Worked on charts and js to help create line graph wwith d3.
+==============================================================
+
 danielL -- 2022-05-08 21:52
 --------------------------------------------------------------
 Added HTML Template that loaded in geojson file data for rendering. Working on loading data through database call.
@@ -88,8 +93,13 @@ anjiniK -- 2022-05-08 22:24
 danielL -- 2022-05-10 00:06
 --------------------------------------------------------------
 Updated database to remove the column names. Updated readme/requirements and worked on maps that render geojson files.
-DATA CONDUIT: In order to show a graph, the database needs to be queried for the relevant information. Our plan was to open
-a sqlite connection to the database that would allow us to run commands to select records. It seems that node.js or sql.js is needed to get this data to the frontend.
+DATA CONDUIT: Function with route in __init.py__ to return selected table contents. Then following function can be used to access the data.
+
+var getData = function(e){
+fetch(e).then(res => res.json()).then(data => {
+console.log(data);
+})};
+
 ==============================================================
 
 anjiniK -- 2022-05-10 21:17
@@ -105,7 +115,3 @@ mayQ -- 2022-05-10 21:17
  *  worked on Survey page and storing preferences into the survey database
 ==============================================================
 
-emersonG -- 2022-05-07 21:26
---------------------------------------------------------------
-Worked on charts and js to help create line graph wwith d3.
-==============================================================

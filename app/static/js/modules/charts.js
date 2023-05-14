@@ -1,4 +1,4 @@
-import * as d3 from "./d3.js";
+<script src="https://d3js.org/d3.v7.min.js"></script>
 import map from "./src/map.js";
 import range from "./src/range.js";
 
@@ -114,39 +114,6 @@ chart = PieChart(values, {
 })
 
 
-
-// ==================================================
-
-//Fib
-// function fib(n){
-//     if (n == 0 || n == 1){
-//         return n
-//     }else{
-//         return (fib(n-1) + fib(n-2))
-//     }
-//   }
-
-
-//   var addFib = function(text) {
-//     var list = document.getElementById("fiblist");
-//     var newitem = document.createElement("li");
-//     newitem.innerHTML = text;
-//     list.appendChild(newitem);
-//   };
-
-// // FIB BUTTONs
-// var fb = document.getElementById("fibbutton")
-// fibbutton.addEventListener('click', fibaction)
-// //addFib("works up to here")
-
-// function fibaction() {
-//   var ans = document.createElement("li")
-//   //ans.innerHTML = fib(Number(document.getElementById('fibinput').getAttribute()))
-//   ans.innerHTML= document.getElementById('fibinput').value + ": " + fib(Number(document.getElementById('fibinput').value))
-//   document.getElementById("fiblist").appendChild(ans)
-//   //addFib(fib(10))
-// }
-//=================================
 const data = [1,2,3,4]
 const width = 420;
 x = d3.scaleLinear()
@@ -174,18 +141,6 @@ function sales(){
   return div.node();
 }
 
-
-
-//================================================
-
-//imports
-// const sqlite3 = require('sqlite3').verbose();
-// let db = new sqlite3.Database('./app/zetten.db', (err) => {
-//   if (err) {
-//     console.log("whoops");
-//   }
-//   console.log('we connected');
-// });
 //import {LineChart} from "@d3/line-chart"
 //return
 
