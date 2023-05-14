@@ -108,11 +108,11 @@ def setup():
 def get_latitude_longitudes():
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    res = c.execute(f"SELECT latitude AND longitude from neighborhoods")
+    res = c.execute(f"SELECT Latitude, Longitude from neighborhoods")
     out = res.fetchall()
-    db.commit()
     db.close()
     return out
+
 
 def add_survey(username, neighborhood, price, priority, secpriority ):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)

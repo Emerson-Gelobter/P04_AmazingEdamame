@@ -30,11 +30,26 @@ function onMapClick(e) {
 map.on('click', onMapClick);
 
 
-var getData = function(e){
-fetch(e).then(res => res.json()).then(data => {
-// Printing that data to a div in HTML
-//document.getElementById('received').innerText = data;
-console.log(data);
-})};
+var getData = function(e) {
+  fetch(e).then(res => res.json()).then(data => {
+    for (var i = 0; i < data.length; i++) {
+      var innerList = data[i];
+      console.log(innerList);
 
-console.log(getData('/neighborsMap'));
+      for (var j = 0; j < 4; j++) {
+        var element = innerList[j];
+        
+        console.log(element);
+      }
+    }
+  })};
+
+var x = getData('/neighborsMap');
+
+
+// var getData = function(e){
+// fetch(e).then(res => res.text()).then(data => {
+// // Printing that data to a div in HTML
+// //document.getElementById('received').innerText = data;
+// console.log(data);
+// })};

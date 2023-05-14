@@ -115,3 +115,13 @@ mayQ -- 2022-05-10 21:17
  *  worked on Survey page and storing preferences into the survey database
 ==============================================================
 
+danielL -- 2022-05-11 21:00
+--------------------------------------------------------------
+Wrote a general function to access data based off a given route in JS. Made a setup database file.
+==============================================================
+
+danielL -- 2022-05-14 17:56
+--------------------------------------------------------------
+Removed extra JS dependencies. Used leaflet to make a functioning map with popups based off lat/long (and wrote relevant function to get this info in db.py). Start parsing JSON locations.
+==============================================================
+
