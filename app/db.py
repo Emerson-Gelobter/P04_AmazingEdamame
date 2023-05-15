@@ -108,19 +108,19 @@ def setup():
 def get_latitude_longitudes():
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    res = c.execute(f"SELECT latitude AND longitude from neighborhoods")
+    res = c.execute(f"SELECT Latitude, Longitude from neighborhoods")
     out = res.fetchall()
-    db.commit()
     db.close()
     return out
 
-def add_survey(username, neighborhood, price, priority, secpriority ):
-    db = sqlite3.connect(DB_FILE, check_same_thread=False)
-    c = db.cursor()
-    if (check_username_survey(username)):
-        c.execute("UPDATE surveyPreference SET (?, ?, ?, ?) WHERE username = ?(neighborhood, price, priority, secpriority, username)")
-    else:
-        c.execute('''INSERT INTO surveyPreference (username, neighborhood, price, priority, secpriority)(?,?,?,?,?)''')
-    get_table_contents("surveyPreference")
-    db.commit()
-    db.close()
+
+# def add_survey(username, neighborhood, price, priority, secpriority ):
+#     db = sqlite3.connect(DB_FILE, check_same_thread=False)
+#     c = db.cursor()
+#     if (check_username_survey(username)):
+#         c.execute("UPDATE surveyPreference SET (?, ?, ?, ?) WHERE username = ?(neighborhood, price, priority, secpriority, username)")
+#     else:
+#         c.execute('''INSERT INTO surveyPreference (username, neighborhood, price, priority, secpriority)(?,?,?,?,?)''')
+#     get_table_contents("surveyPreference")
+#     db.commit()
+#     db.close()

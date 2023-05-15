@@ -73,9 +73,9 @@ def survey():
     price_range = request.form.get('priceRange') 
     priority = request.form.get('priority') 
     sec_priority = request.form.get('secondpriority') 
-    if 'username' in session:
-        user = session['username']
-    db.add_survey(user, neighborhood_preference, price_range, priority, sec_priority)
+    # if 'username' in session:
+    #     user = session['username']
+    # db.add_survey(user, neighborhood_preference, price_range, priority, sec_priority)
     return render_template("survey.html")
 
 @app.route("/map")
@@ -85,6 +85,7 @@ def map():
 @app.route("/neighborsMap")
 def neighborsMap():
     return db.get_table_contents("neighborhoods")
+
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified

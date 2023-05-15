@@ -1,12 +1,38 @@
-<script src="https://d3js.org/d3.v7.min.js"></script>
+import * as d3 from "./d3.js";
 import map from "./src/map.js";
 import range from "./src/range.js";
-
-
 console.log(("pies!"))
 
-names = new d3.InternSet(names);
+// class InternSet extends Set {
+//   constructor(values, key = keyof) {
+//     super();
+//     Object.defineProperties(this, {_intern: {value: new Map()}, _key: {value: key}});
+//     if (values != null) for (const value of values) this.add(value);
+//   }
+//   has(value) {
+//     return super.has(intern_get(this, value));
+//   }
+//   add(value) {
+//     return super.add(intern_set(this, value));
+//   }
+//   delete(value) {
+//     return super.delete(intern_delete(this, value));
+//   }
+// }
+var values = [20, 40, 10, 30];
+// const names = new d3.InternSet(values, );
+// console.log(names)
 
+class Polygon {
+  constructor() {
+    this.name = 'Polygon';
+  }
+}
+
+const poly1 = new Polygon();
+console.log(poly1.name);
+
+// Expected output: "Polygon"
 
 // Copyright 2021 Observable, Inc.
 // Released under the ISC license.
@@ -34,10 +60,9 @@ function PieChart(data, {
   const I = range(N.length).filter(i => !isNaN(V[i]));
 
   // Unique the names.
-  if (names === undefined){ 
-    names = N;
-    names = new d3.InternSet(names);
-  }
+  if (names === undefined) names = N;
+  names = new d3.InternSet(N, V);
+  console.log(whee)
   
 
   // Chose a default color scheme based on cardinality.
@@ -102,14 +127,13 @@ function PieChart(data, {
   return Object.assign(svg.node(), {scales: {color}});
 }
 
-var values = [20, 40, 10, 30];
 
 chart = PieChart(values, {
   name: d => d.name,
   value: d => d.value,
   width: 500,
   height: 500,
-  names: new d3.InternSet(names),
+  // names: new d3.InternSet(names),
 
 })
 
@@ -230,11 +254,11 @@ function LineChart(data, {
 }
 
 
-chart = LinearChart(values, {
-  name: d => d.name,
-  value: d => d.value,
-  yLabel: "AVERAGE HOUSE PRICES",
-  xLabel: "YEARS",
-  width: 500,
-  height: 500,
-})
+//chart = LineChart(values, {
+  //name: d => d.name,
+  ///value: d => d.value,
+  //yLabel: "AVERAGE HOUSE PRICES",
+  //xLabel: "YEARS",
+  //width: 500,
+  //height: 500,
+//})
