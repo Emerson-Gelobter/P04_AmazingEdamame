@@ -114,13 +114,13 @@ def get_latitude_longitudes():
     return out
 
 
-def add_survey(username, neighborhood, price, priority, secpriority ):
-    db = sqlite3.connect(DB_FILE, check_same_thread=False)
-    c = db.cursor()
-    if (check_username_survey(username)):
-        c.execute("UPDATE surveyPreference SET (?, ?, ?, ?) WHERE username = ?(neighborhood, price, priority, secpriority, username)")
-    else:
-        c.execute('''INSERT INTO surveyPreference (username, neighborhood, price, priority, secpriority)(?,?,?,?,?)''')
-    get_table_contents("surveyPreference")
-    db.commit()
-    db.close()
+# def add_survey(username, neighborhood, price, priority, secpriority ):
+#     db = sqlite3.connect(DB_FILE, check_same_thread=False)
+#     c = db.cursor()
+#     if (check_username_survey(username)):
+#         c.execute("UPDATE surveyPreference SET (?, ?, ?, ?) WHERE username = ?(neighborhood, price, priority, secpriority, username)")
+#     else:
+#         c.execute('''INSERT INTO surveyPreference (username, neighborhood, price, priority, secpriority)(?,?,?,?,?)''')
+#     get_table_contents("surveyPreference")
+#     db.commit()
+#     db.close()
