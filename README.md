@@ -52,4 +52,4 @@ https://data.cityofnewyork.us/Business/Neighborhood-Financial-Health-Digital-Map
  python __init__.py
  ```
 
-6. Visit `http://127.0.0.1:5000/` in browser
+6. Visit `http://68.183.21.9/` in browser
