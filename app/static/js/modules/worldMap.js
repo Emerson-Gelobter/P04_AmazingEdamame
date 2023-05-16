@@ -4,29 +4,15 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-// var popup = L.popup()
-// .setLatLng([40.6093777011377,-73.948415153289])
-// .setContent("Madison, Brooklyn")
-// .addTo(map);
-
 function makeCircles(x,y,z1,z2){
   var circle = L.circle([x,y], {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
-    radius: 500
+    radius: 200
   }).addTo(map);
-  circle.bindPopup(z1.toString(),z2.toString());
+  circle.bindPopup(z1.toString() + "," + z2.toString());
 }
-
-// var circle = L.circle([40.6093777011377,-73.948415153289], {
-//   color: 'red',
-//   fillColor: '#f03',
-//   fillOpacity: 0.5,
-//   radius: 500
-// }).addTo(map);
-
-// circle.bindPopup("Madison, Brooklyn");
 
 var popup = L.popup();
 
