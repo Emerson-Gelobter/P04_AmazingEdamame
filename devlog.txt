@@ -125,3 +125,8 @@ danielL -- 2022-05-14 17:56
 Removed extra JS dependencies. Used leaflet to make a functioning map with popups based off lat/long (and wrote relevant function to get this info in db.py). Start parsing JSON locations.
 ==============================================================
 
+emersonG -- 2022-05-15 13:12
+--------------------------------------------------------------
+Worked on updating html pages and making them look more professional
+==============================================================
+

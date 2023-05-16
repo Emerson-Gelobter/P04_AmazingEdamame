@@ -1,169 +1,80 @@
-import * as d3 from "./d3.js";
-import map from "./src/map.js";
-import range from "./src/range.js";
-console.log(("pies!"))
-
-// class InternSet extends Set {
-//   constructor(values, key = keyof) {
-//     super();
-//     Object.defineProperties(this, {_intern: {value: new Map()}, _key: {value: key}});
-//     if (values != null) for (const value of values) this.add(value);
-//   }
-//   has(value) {
-//     return super.has(intern_get(this, value));
-//   }
-//   add(value) {
-//     return super.add(intern_set(this, value));
-//   }
-//   delete(value) {
-//     return super.delete(intern_delete(this, value));
-//   }
-// }
-var values = [20, 40, 10, 30];
-// const names = new d3.InternSet(values, );
-// console.log(names)
-
-class Polygon {
-  constructor() {
-    this.name = 'Polygon';
-  }
-}
-
-const poly1 = new Polygon();
-console.log(poly1.name);
-
-// Expected output: "Polygon"
-
-// Copyright 2021 Observable, Inc.
-// Released under the ISC license.
-// https://observablehq.com/@d3/pie-chart
-function PieChart(data, {
-  name = ([x]) => x,  // given d in data, returns the (ordinal) label
-  value = ([, y]) => y, // given d in data, returns the (quantitative) value
-  title, // given d in data, returns the title text
-  width = 640, // outer width, in pixels
-  height = 400, // outer height, in pixels
-  innerRadius = 0, // inner radius of pie, in pixels (non-zero for donut)
-  outerRadius = Math.min(width, height) / 2, // outer radius of pie, in pixels
-  labelRadius = (innerRadius * 0.2 + outerRadius * 0.8), // center radius of labels
-  format = ",", // a format specifier for values (in the label)
-  names, // array of names (the domain of the color scale)
-  colors, // array of colors for names
-  stroke = innerRadius > 0 ? "none" : "white", // stroke separating widths
-  strokeWidth = 1, // width of stroke separating wedges
-  strokeLinejoin = "round", // line join of stroke separating wedges
-  padAngle = stroke === "none" ? 1 / outerRadius : 0, // angular separation between wedges
-} = {}) {
-  // Compute values.
-  const N = map(data, name);
-  const V = map(data, value);
-  const I = range(N.length).filter(i => !isNaN(V[i]));
-
-  // Unique the names.
-  if (names === undefined) names = N;
-  names = new d3.InternSet(N, V);
-  console.log(whee)
-  
-
-  // Chose a default color scheme based on cardinality.
-  if (colors === undefined) colors = d3.schemeSpectral[names.size];
-  if (colors === undefined) colors = d3.quantize(t => d3.interpolateSpectral(t * 0.8 + 0.1), names.size);
-
-  // Construct scales.
-  const color = d3.scaleOrdinal(names, colors);
-
-  // Compute titles.
-  if (title === undefined) {
-    const formatValue = d3.format(format);
-    title = i => `${N[i]}\n${formatValue(V[i])}`;
-  } else {
-    const O = d3.map(data, d => d);
-    const T = title;
-    title = i => T(O[i], i, data);
-  }
-
-  // Construct arcs.
-  const arcs = d3.pie().padAngle(padAngle).sort(null).value(i => V[i])(I);
-  const arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
-  const arcLabel = d3.arc().innerRadius(labelRadius).outerRadius(labelRadius);
-  
-  const svg = d3.create("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .attr("viewBox", [-width / 2, -height / 2, width, height])
-      .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
-
-  svg.append("g")
-      .attr("stroke", stroke)
-      .attr("stroke-width", strokeWidth)
-      .attr("stroke-linejoin", strokeLinejoin)
-    .selectAll("path")
-    .data(arcs)
-    .join("path")
-      .attr("fill", d => color(N[d.data]))
-      .attr("d", arc)
-    .append("title")
-      .text(d => title(d.data));
-
-  svg.append("g")
-      .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
-      .attr("text-anchor", "middle")
-    .selectAll("text")
-    .data(arcs)
-    .join("text")
-      .attr("transform", d => `translate(${arcLabel.centroid(d)})`)
-    .selectAll("tspan")
-    .data(d => {
-      const lines = `${title(d.data)}`.split(/\n/);
-      return (d.endAngle - d.startAngle) > 0.25 ? lines : lines.slice(0, 1);
-    })
-    .join("tspan")
-      .attr("x", 0)
-      .attr("y", (_, i) => `${i * 1.1}em`)
-      .attr("font-weight", (_, i) => i ? null : "bold")
-      .text(d => d);
-
-  return Object.assign(svg.node(), {scales: {color}});
-}
+// import * as d3 from "./d3.js";
 
 
-chart = PieChart(values, {
-  name: d => d.name,
-  value: d => d.value,
-  width: 500,
-  height: 500,
-  // names: new d3.InternSet(names),
+var data = [{name: "Alex", share: 20.70}, 
+  {name: "Shelly", share: 30.92},
+  {name: "Clark", share: 15.42},
+  {name: "Matt", share: 13.65},
+  {name: "Jolene", share: 19.31}];
+  // console.log((data))
 
+  //dimensions
+  var svg = d3.select("svg"),
+    width = svg.attr("width"),
+    height = svg.attr("height"),
+    radius = 200;
+
+//setting scale for data by cat with each amount 
+var ordScale = d3.scaleOrdinal()
+  .domain(data)
+  .range(['#ffd384','#94ebcd','#fbaccc','#d3e0ea','#fa7f72']);
+
+  //create pie chart using .pie()
+var pie = d3.pie().value(function(d) { 
+  return d.share; 
+});
+pie(data);
+var arc = d3.selectAll("arc")
+     .data(pie(data))
+     .enter();
+
+// fill the chart 
+var path = d3.arc()
+.outerRadius(radius)
+.innerRadius(0);
+
+arc.append("path")
+.attr("d", path)
+.attr("fill", function(d) { return ordScale(d.data.name); });
+
+//labelling the chart 
+var label = d3.arc()
+.outerRadius(radius)
+.innerRadius(0);
+
+arc.append("text")
+.attr("transform", function(d) { 
+return "translate(" + label.centroid(d) + ")"; 
 })
+.text(function(d) { return d.data.name; })
+.style("font-family", "arial")
+.style("font-size", 15);
 
 
-const data = [1,2,3,4]
-const width = 420;
-x = d3.scaleLinear()
-    .domain([0,d3.max(data)])
-    .range([0,width])
-y = d3.scaleBand()
-    .domain(d3.range(data.length))
-    .range([0,20 * data.length])
+// x = d3.scaleLinear()
+//     .domain([0,d3.max(data)])
+//     .range([0,width])
+// y = d3.scaleBand()
+//     .domain(d3.range(data.length))
+//     .range([0,20 * data.length])
 
-function sales(){
-  const div = d3.create("div")
-     .style("font", "10px sans-serif")
-     .style("text-align", "right")
-     .style("color", "white");
+// function sales(){
+//   const div = d3.create("div")
+//      .style("font", "10px sans-serif")
+//      .style("text-align", "right")
+//      .style("color", "white");
 
-  div.selectAll("div")
-     .data(data)
-     .join("div")
-     .style("background", "steelblue")
-     .style("padding", "3px")
-     .style("margin", "1px")
-     .style("width", d => `${d * 10}px`)
-     .text(d => d);
+//   div.selectAll("div")
+//      .data(data)
+//      .join("div")
+//      .style("background", "steelblue")
+//      .style("padding", "3px")
+//      .style("margin", "1px")
+//      .style("width", d => `${d * 10}px`)
+//      .text(d => d);
 
-  return div.node();
-}
+//   return div.node();
+// }
 
 //import {LineChart} from "@d3/line-chart"
 //return
