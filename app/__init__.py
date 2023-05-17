@@ -32,7 +32,7 @@ def login():
 
 @app.route('/info')
 def info():
-    return (db.get_table_contents(""), render_template('moreinfo.html'))
+    return (db.get_table_contents("financials_info"), render_template('moreinfo.html'))
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
