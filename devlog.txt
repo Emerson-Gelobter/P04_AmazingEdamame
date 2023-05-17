@@ -141,3 +141,8 @@ mayQ -- 2022-05-15 19:17
 Worked on droplet. Project login screen works, but cannot get databases to work
 
 ==============================================================
+
+emersonG -- 2022-05-17 00:00
+--------------------------------------------------------------
+Worked more on templates and formatting user interface on login/register pages.
+==============================================================
