@@ -1,6 +1,6 @@
 from flask import Flask             #facilitate flask webserving
 from flask import render_template, request   #facilitate jinja templating
-from flask import session, redirect, url_for, make_response        #facilitate form submission
+from flask import session, url_for, make_response        #facilitate form submission
 import os
 import db
 
@@ -11,7 +11,7 @@ app.secret_key = os.urandom(32)
 @app.route('/')
 def index():
     if 'username' in session:
-        return redirect("/home")
+        return render_template("home_page.html",username = session['username'])
     return render_template('login.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -23,7 +23,7 @@ def login():
     if db.verify_account(username,password):
         session['username'] = username
         session['password'] = password
-        return redirect("/home")
+        return render_template("home_page.html",username = session['username'])
     if request.form.get('submit_button') is not None:
         return render_template("registration.html")
     else:
@@ -48,7 +48,7 @@ def register():
 @app.route('/home')
 def home():
     if 'username' not in session:
-        return redirect("/login")
+        return render_template("login.html")
     username = session['username']
     password = session['password']
     if db.verify_account(username, password):
@@ -64,7 +64,7 @@ def verify_session():
 @app.route("/logout")
 def logout():
     session.pop('username', None)
-    return redirect(url_for('index'))
+    return render_template("login.html")
 
 @app.route("/survey", methods = ['GET','POST'])
 def survey(): 
