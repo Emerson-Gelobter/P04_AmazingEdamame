@@ -1,5 +1,6 @@
 import sqlite3
 import csv
+import geo
 
 DB_FILE = "zetten.db"
 
@@ -22,7 +23,7 @@ def get_table_contents(tableName):
     db.commit()
     db.close()
     return out
-    
+
 def create_table(name, header):
     query(f"CREATE TABLE IF NOT EXISTS {name} {header}")
 
@@ -93,17 +94,21 @@ def setup():
     Community_District_No TEXT, Poverty_Index FLOAT, Median_Income INTEGER, Percent_White FLOAT, 
     Percent_Black FLOAT, Percent_Asian FLOAT, Percent_Other FLOAT, Percent_Hispanic FLOAT )''')
     create_table("financials_info",financials_header)
-    with open("static/datasets/financials.csv","r") as financials_csv:
+    with open("static/datasets/new_financials.csv","r") as financials_csv:
         db_2 = sqlite3.connect(DB_FILE, check_same_thread=False)
         c_2 = db_2.cursor()
         csv_reader = csv.reader(financials_csv)
         for row in csv_reader:
+            print(row)
             c_2.execute('''
-                INSERT INTO financials_info (Year_Published, PUMA, Borough, Neighborhood, Community_District_No, Poverty_Index, Median_Income, Percent_White, Percent_Black, Percent_Asian, Percent_Other, Percent_Hispanic)
+                INSERT INTO financials_info (Year_Published, Borough, Neighborhood, Community_District_No, Poverty_Index, Median_Income, 
+                Percent_White, Percent_Black, Percent_Asian, Percent_Other, Percent_Hispanic,Latitude,Longitude)
                 VALUES (?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?)
-            ''', (row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11]))
+            ''', (row[0],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13]))
     c_2.close()
     db_2.commit()
+
+
 
 def get_latitude_longitudes():
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -113,6 +118,35 @@ def get_latitude_longitudes():
     db.close()
     return out
 
+"""
+def process():
+    with open("static/datasets/financials.csv", "r") as financials_csv:
+        db_2 = sqlite3.connect(DB_FILE, check_same_thread=False)
+        c_2 = db_2.cursor()
+        csv_reader = csv.reader(financials_csv)
+        updated_rows = []  # To store updated rows
+
+        for i,row in enumerate(csv_reader):
+            if i % 6 == 0:
+                try:    
+                    lat, long = geo.get_lat_long(row[3],row[2])  # Call your function to get latitude and longitude values separately
+
+                    row.append(lat)
+                    row.append(long)
+                except Exception as e:
+                    print(f"Error processing row: {row}. Error: {e}")
+                    updated_rows.append(row)
+                    continue
+
+                updated_rows.append(row)  # Store the updated row
+
+    # After the loop, you can proceed with further processing or writing the updated rows back to the CSV file
+    # For example:
+    with open("updated_financials.csv", "w", newline="") as updated_csv:
+        csv_writer = csv.writer(updated_csv)
+        csv_writer.writerows(updated_rows)
+process()
+"""
 
 # def add_survey(username, neighborhood, price, priority, secpriority ):
 #     db = sqlite3.connect(DB_FILE, check_same_thread=False)

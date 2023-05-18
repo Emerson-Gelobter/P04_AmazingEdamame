@@ -10,17 +10,24 @@ def get_key():
         key = key.read()
     return key
 
-params = {
-    'access_key': get_key(),
-    'query': '345 Chambers Street',
-    'region': 'New York',
-    'limit': 1,
-}
+def get_lat_long(name, borough):
+    params = {
+        'access_key': get_key(),
+        'query': "New York Neighborhood" + name, 
+        'region': borough + "New York", 
+        'limit': 1,
+    }
+    response = process('http://api.positionstack.com/v1/forward', params=params)
+    print(name,borough,response)
+    arr = []
+    latitude = response['data'][0]['latitude']
+    longitude = response['data'][0]['longitude']
 
-#esponse = process('http://api.positionstack.com/v1/forward', params=params)
+    return latitude, longitude
 
-#print(response)
+#print(get_lat_long('Pelham Parkway, Morris Park & Laconia','Bronx'))
 
+"""
 params ={
     'access_key': get_key(),
     'query': '51.507822,-0.076702',
@@ -29,4 +36,4 @@ params ={
 #response = process('http://api.positionstack.com/v1/reverse', params=params)
 
 #print(response)
-
+"""

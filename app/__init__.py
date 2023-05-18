@@ -30,10 +30,6 @@ def login():
         resp = make_response(render_template('error.html',msg = "Username or Password is not correct"))
         return resp
 
-@app.route('/info')
-def info():
-    return (db.get_table_contents("financials_info"), render_template('moreinfo.html'))
-
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -78,13 +74,20 @@ def survey():
     # db.add_survey(user, neighborhood_preference, price_range, priority, sec_priority)
     return render_template("survey.html")
 
-@app.route("/map")
-def map():
-    return render_template("map.html")
-
+#helper function to return neighborhoods that would be shown on the city map
 @app.route("/neighborsMap")
 def neighborsMap():
     return db.get_table_contents("neighborhoods")
+
+#helper function to return neighborhoods that would be shown on the city map
+@app.route('/info')
+def info():
+    return db.get_table_contents("financials_info")
+
+#the actual route for more info
+@app.route('/infoPage')
+def infoPage():
+    return render_template("moreinfo.html")
 
 
 if __name__ == "__main__": #false if this file imported as module
