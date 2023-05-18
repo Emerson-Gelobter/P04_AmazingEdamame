@@ -25,9 +25,11 @@
             <script>
              var getDemographics = function(e){
                 fetch(e).then(res => res.json()).then(data => {
-                for (let i=0; i<data.length;i+=7){
+                for (let i=0; i<data.length;i+=1){
                 var inner = data[i];
                 console.log(inner);
+                name = inner[3];
+                borough = inner[2];
                 white = inner[7];
                 black = inner[8];
                 asian = inner[9];

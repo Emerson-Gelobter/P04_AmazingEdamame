@@ -92,22 +92,20 @@ def setup():
 
     financials_header = ('''(Year_Published TEXT, PUMA INTEGER, Borough TEXT, Neighborhood TEXT, 
     Community_District_No TEXT, Poverty_Index FLOAT, Median_Income INTEGER, Percent_White FLOAT, 
-    Percent_Black FLOAT, Percent_Asian FLOAT, Percent_Other FLOAT, Percent_Hispanic FLOAT )''')
+    Percent_Black FLOAT, Percent_Asian FLOAT, Percent_Other FLOAT, Percent_Hispanic FLOAT, Latitude FLOAT, Longitude FLOAT)''')
     create_table("financials_info",financials_header)
     with open("static/datasets/new_financials.csv","r") as financials_csv:
         db_2 = sqlite3.connect(DB_FILE, check_same_thread=False)
         c_2 = db_2.cursor()
         csv_reader = csv.reader(financials_csv)
         for row in csv_reader:
-            print(row)
             c_2.execute('''
                 INSERT INTO financials_info (Year_Published, Borough, Neighborhood, Community_District_No, Poverty_Index, Median_Income, 
                 Percent_White, Percent_Black, Percent_Asian, Percent_Other, Percent_Hispanic,Latitude,Longitude)
-                VALUES (?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?,?)
             ''', (row[0],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13]))
     c_2.close()
     db_2.commit()
-
 
 
 def get_latitude_longitudes():
