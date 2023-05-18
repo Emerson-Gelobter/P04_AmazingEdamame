@@ -102,7 +102,7 @@ def setup():
             c_2.execute('''
                 INSERT INTO financials_info (Year_Published, Borough, Neighborhood, Community_District_No, Poverty_Index, Median_Income, 
                 Percent_White, Percent_Black, Percent_Asian, Percent_Other, Percent_Hispanic,Latitude,Longitude)
-                VALUES (?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?,?)
+                VALUES (?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?)
             ''', (row[0],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13]))
     c_2.close()
     db_2.commit()
