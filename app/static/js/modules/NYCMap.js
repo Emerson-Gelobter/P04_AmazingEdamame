@@ -4,13 +4,15 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+var layerGroup = L.layerGroup().addTo(map);
+
 function makeCircles(x,y,z1,z2){
   var circle = L.circle([x,y], {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
     radius: 200
-  }).addTo(map);
+  }).addTo(layerGroup);
   circle.bindPopup(z1.toString() + "," + z2.toString());
 }
 
@@ -20,7 +22,7 @@ function makeBlueCircles(x,y,z1,z2){
     fillColor: '#f03',
     fillOpacity: 0.5,
     radius: 200
-  }).addTo(map);
+  }).addTo(layerGroup);
   circle.bindPopup(z1.toString() + "," + z2.toString());
 }
 
@@ -30,10 +32,10 @@ function onMapClick(e) {
     popup
         .setLatLng(e.latlng)
         .setContent(e.latlng.toString())
-        .openOn(map);
+        .openOn(layerGroup);
 }
 
-map.on('click', onMapClick);
+layerGroup.on('click', onMapClick);
 
 var getDemographics = function(e){
   fetch(e).then(res => res.json()).then(data => {
@@ -59,5 +61,33 @@ for (i=0; i<data.length;i++){
 }
 })};
 
-getData('/neighborsMap');
-getDemographics('/info')
+
+function getSelectedValue() {
+  var radios = document.getElementsByName("flexRadioDefault");
+  var selectedValue;
+
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+      selectedValue = radios[i].value;
+      break;
+    }
+  }
+  if (selectedValue == "neighborhoods"){
+    getData('/neighborsMap');
+  } else if  (selectedValue == "financials"){
+    getDemographics('/info');
+  }
+}
+
+function clear(){
+  layerGroup.clearLayers();
+}
+
+// Attach event listener to the radio buttons
+var radios = document.getElementsByName("flexRadioDefault");
+for (var i = 0; i < radios.length; i++) {
+  radios[i].addEventListener("change", clear);
+  radios[i].addEventListener("change", getSelectedValue);
+}
+
+
