@@ -58,7 +58,7 @@ def setup():
     users_header = ("(username TEXT, password TEXT)")
     create_table("userInfo",users_header)
     
-    survey_header = ("(username Text, neighborhood Text, price Text, priority Text, secpriority Text)")
+    survey_header = ("(username TEXT, neighborhood TEXT, price TEXT, priority TEXT, secpriority TEXT)")
     create_table("surveyPreference", survey_header)
 
     neighbors_header = ("(Latitude FLOAT,Longitude FLOAT,Name TEXT,Borough TEXT)")
@@ -117,6 +117,20 @@ def get_latitude_longitudes():
     return out
 
 """
+def add_survey(username, neighborhood, price, priority, secpriority ):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    if (check_username_survey(username)):
+        c.execute("UPDATE surveyPreference SET (?, ?, ?, ?) WHERE username = ?(neighborhood, price, priority, secpriority, username)")
+    else:
+        c.execute('''INSERT INTO surveyPreference (username, neighborhood, price, priority, secpriority) VALUES (?,?,?,?,?)'''), (row[0],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13]))
+    get_table_contents("surveyPreference")
+    db.commit()
+    db.close()
+print(add_survey("bob","one","12","one","one"))
+"""
+
+"""
 def process():
     with open("static/datasets/financials.csv", "r") as financials_csv:
         db_2 = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -145,14 +159,3 @@ def process():
         csv_writer.writerows(updated_rows)
 process()
 """
-
-# def add_survey(username, neighborhood, price, priority, secpriority ):
-#     db = sqlite3.connect(DB_FILE, check_same_thread=False)
-#     c = db.cursor()
-#     if (check_username_survey(username)):
-#         c.execute("UPDATE surveyPreference SET (?, ?, ?, ?) WHERE username = ?(neighborhood, price, priority, secpriority, username)")
-#     else:
-#         c.execute('''INSERT INTO surveyPreference (username, neighborhood, price, priority, secpriority)(?,?,?,?,?)''')
-#     get_table_contents("surveyPreference")
-#     db.commit()
-#     db.close()
