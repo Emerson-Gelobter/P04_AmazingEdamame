@@ -18,7 +18,7 @@ function makeCircles(x,y,z1,z2){
 
 function makeFinancialCircles(x,y,z1,z2){
   var circle = L.circle([x,y], {
-    color: 'red',
+    color: 'blue',
     fillColor: '#f03',
     fillOpacity: 0.5,
     radius: 200
