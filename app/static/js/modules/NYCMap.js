@@ -16,9 +16,9 @@ function makeCircles(x,y,z1,z2){
   circle.bindPopup(z1.toString() + "," + z2.toString());
 }
 
-function makeBlueCircles(x,y,z1,z2){
+function makeFinancialCircles(x,y,z1,z2){
   var circle = L.circle([x,y], {
-    color: 'blue',
+    color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
     radius: 200
@@ -35,7 +35,7 @@ function onMapClick(e) {
         .openOn(layerGroup);
 }
 
-layerGroup.on('click', onMapClick);
+map.on('click', onMapClick);
 
 var getDemographics = function(e){
   fetch(e).then(res => res.json()).then(data => {
@@ -45,7 +45,7 @@ var getDemographics = function(e){
   borough = inner[2];
   latitude = inner[12];
   longitude = inner[13];
-  makeBlueCircles(latitude,longitude,name,borough);
+  makeFinancialCircles(latitude,longitude,name,borough);
   }
   })};
 
@@ -89,5 +89,3 @@ for (var i = 0; i < radios.length; i++) {
   radios[i].addEventListener("change", clear);
   radios[i].addEventListener("change", getSelectedValue);
 }
-
-

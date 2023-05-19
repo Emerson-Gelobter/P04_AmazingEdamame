@@ -1,66 +1,84 @@
-import * as d3 from "./d3.js";
+var getDemographics = function(e){
+  fetch(e).then(res => res.json()).then(data => {
+  for (let i=0; i<data.length;i++){
+  var inner = data[i];
+  name = inner[3];
+  borough = inner[2];
+  white = inner[7];
+  black = inner[8];
+  asian = inner[9];
+  other = inner[10]
+  hispanic = inner[11];
+  var data1 = [
+    { label: 'White', value: white * 100 },
+    { label: 'Black', value: black * 100 },
+    { label: 'Asian', value: asian * 100 },
+    { label: 'Other', value: other *100 },
+    { label: 'Hispanic', value: hispanic * 100 },
+  ];
+  title = name.toString() + ", " + borough.toString();
+  createPieChart(data1,title);
+  break;
+  }
+  })};
 
-  var data = function(e){
-    fetch(e).then(res => res.json()).then(data => {
-    
-      for (let i=0; i<data.length;i+=7){
-      var inner = data[i];
-      white = inner[7];
-      black = inner[8];
-      asian = inner[9];
-      other = inner[10]
-      hispanic = inner[11];
-      
-    }
-    })};
-    console.log(data)
-
-    // Step 3
-    var svg = select("svg"),
-    width = svg.attr("width"),
-    height = svg.attr("height"),
-    radius = 200;
+  getDemographics("/info") //only does the first one currently
+  
 
 
+  function createPieChart(data,title) {
+    var svg = d3.select("#pie"), 
+      width = +svg.attr("width"), 
+      height = +svg.attr("height"), 
+      radius = Math.min(width, height) / 2;
+  
     var g = svg.append("g")
-              .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-    // Step 4
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+  
     var ordScale = d3.scaleOrdinal()
-                      .domain(data)
-                      .range(['#ffd384','#94ebcd','#fbaccc','#d3e0ea','#fa7f72']);
-
-    // Step 5
-    var pie = d3.pie().value(function(d) { 
-            return d.share; 
-        });
-
+      .domain(data.map(function(d) { return d.label; })) // 
+      .range(['#ffd384', '#94ebcd', '#fbaccc', '#d3e0ea', '#fa7f72']);
+  
+    var pie = d3.pie()
+      .value(function(d) { return d.value; }); 
+  
     var arc = g.selectAll("arc")
-              .data(pie(data))
-              .enter();
-
-    // Step 6
+      .data(pie(data))
+      .enter();
+  
     var path = d3.arc()
-                .outerRadius(radius)
-                .innerRadius(0);
-
+      .outerRadius(radius - 10)
+      .innerRadius(0);
+  
     arc.append("path")
       .attr("d", path)
-      .attr("fill", function(d) { return ordScale(d.data.name); });
-
-    // Step 7
+      .attr("fill", function(d) { return ordScale(d.data.label); }); 
+  
     var label = d3.arc()
-                  .outerRadius(radius)
-                  .innerRadius(0);
-        
+      .outerRadius(radius - 40)
+      .innerRadius(radius - 40);
+  
     arc.append("text")
       .attr("transform", function(d) { 
-                return "translate(" + label.centroid(d) + ")"; 
-        })
-      .text(function(d) { return d.data.name; })
-      .style("font-family", "arial")
+        var pos = label.centroid(d);
+        pos[1] += 40; // Adjust the offset as needed
+        return "translate(" + pos + ")";
+      })
+      .text(function(d) { return d.data.label; }) 
+      .style("font-family", "Arial")
       .style("font-size", 15);
-
+    
+      svg.append("text")
+      .attr("class", "chart-title")
+      .attr("x", width / 2)
+      .attr("y", 30)
+      .attr("text-anchor", "middle")
+      .text(title)
+      .style("font-family", "Arial")
+      .style("font-size", 20);
+  }
+  
+  
 
   // ===================================
 
