@@ -22,9 +22,7 @@ var getDemographics = function(e){
   }
   })};
 
-  getDemographics("/info") //only does the first one currently
-  
-
+  getDemographics("/info"); //only does the first one currently
 
   function createPieChart(data,title) {
     var svg = d3.select("#pie"), 

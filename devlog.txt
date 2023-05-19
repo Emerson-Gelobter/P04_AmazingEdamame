@@ -154,5 +154,6 @@ Fixed droplet issues. Debugged more info page data loading. Wrote script to add 
 
 danielL -- 2022-05-18 22:21
 --------------------------------------------------------------
-Radio buttons for each database. Wrote JS to clear map and plot points based off of radio selection. Made progress on pie charts.
+Radio buttons for each database. Wrote JS to clear map and plot points based off of radio selection. Made progress on pie charts. 
+TOUR: Saw cool HTML elements like sliders, checkboxes, and radios. Also saw people using google charts to open a chart on a page. Will look into both.
 ==============================================================
