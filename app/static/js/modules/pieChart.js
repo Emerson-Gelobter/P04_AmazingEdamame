@@ -13,7 +13,7 @@ var getDemographics = function(e){
     { label: 'White', value: white * 100 },
     { label: 'Black', value: black * 100 },
     { label: 'Asian', value: asian * 100 },
-    { label: 'Other', value: other *100 },
+    { label: 'Other', value: other * 100 },
     { label: 'Hispanic', value: hispanic * 100 },
   ];
   title = name.toString() + ", " + borough.toString();
@@ -30,12 +30,12 @@ var getDemographics = function(e){
       height = +svg.attr("height"), 
       radius = Math.min(width, height) / 2;
   
-    var g = svg.append("g")
+    var g = svg.append("g") //moves the pie chart to the middle of the svg
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
   
     var ordScale = d3.scaleOrdinal()
       .domain(data.map(function(d) { return d.label; })) // 
-      .range(['#ffd384', '#94ebcd', '#fbaccc', '#d3e0ea', '#fa7f72']);
+      .range(['#ffd384', '#94ebcd', '#fbaccc', '#d3e0ea', '#fa7f72']); //pie chart colors
   
     var pie = d3.pie()
       .value(function(d) { return d.value; }); 
@@ -59,16 +59,20 @@ var getDemographics = function(e){
     arc.append("text")
       .attr("transform", function(d) { 
         var pos = label.centroid(d);
-        pos[1] += 40; // Adjust the offset as needed
+        pos[1] += 40; // Adjust the offset of the text as needed
         return "translate(" + pos + ")";
       })
-      .text(function(d) { return d.data.label; }) 
+      .text(function(d) { return d.data.label; }) //returns the labels of the data
+      // -> design choices: if the pie slice is less than a certain amount, hover the label 
+      //
       .style("font-family", "Arial")
-      .style("font-size", 15);
+      .style("font-size", 15)
     
+    
+      //title of the chart
       svg.append("text")
       .attr("class", "chart-title")
-      .attr("x", width / 2)
+      .attr("x", width / 2) // centers title
       .attr("y", 30)
       .attr("text-anchor", "middle")
       .text(title)
