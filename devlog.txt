@@ -157,3 +157,10 @@ danielL -- 2022-05-18 22:21
 Radio buttons for each database. Wrote JS to clear map and plot points based off of radio selection. Made progress on pie charts. 
 TOUR: Saw cool HTML elements like sliders, checkboxes, and radios. Also saw people using google charts to open a chart on a page. Will look into both.
 ==============================================================
+
+emersonG -- 2022-05-19 10:46
+--------------------------------------------------------------
+Worked more on front end, making survey and more info pages look better.
+TOUR: Many people were asking about how we incorporated the map and I showed them our use of the leaflet api and how we used d3 to visualize our data.
+==============================================================
+
