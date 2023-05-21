@@ -91,12 +91,20 @@ def neighborsMap():
 def info():
     return db.get_table_contents("financials_info")
 
+#helper function to return neighborhoods that would be shown on the city map
+@app.route('/sales')
+def sales():
+    return db.get_table_contents("sales_info")
+
 #the actual route for more info
 @app.route('/infoPage')
 def infoPage():
-    data = request.args.get('data')
-    x = db.get_financial_specific(data)
-    return render_template("moreinfo.html",a=x)
+    if 'username' not in session:
+        return render_template("login.html")
+    else:
+        data = request.args.get('data')
+        x = db.get_financial_specific(data)
+        return render_template("moreinfo.html",contents=x)
 
 
 if __name__ == "__main__": #false if this file imported as module
