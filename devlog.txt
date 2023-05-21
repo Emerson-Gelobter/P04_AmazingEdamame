@@ -164,3 +164,10 @@ Worked more on front end, making survey and more info pages look better.
 TOUR: Many people were asking about how we incorporated the map and I showed them our use of the leaflet api and how we used d3 to visualize our data.
 ==============================================================
 
+==============================================================
+mayQ -- 2022-05-21 00:02
+--------------------------------------------------------------
+Created survey redirect route
+Survey results are now stored in the survey table.
+TOUR: some groups used chart.js. Saw things like sliders and checkboxes. Another group used javascript to make an interactive map. 
+==============================================================
