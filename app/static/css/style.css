@@ -37,3 +37,16 @@
     background-color: hsla(0, 0%, 100%, 0.9) !important;
     backdrop-filter: saturate(200%) blur(25px);
   }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  #chart_div {
+    /* Adjust the top or bottom margin as needed */
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }

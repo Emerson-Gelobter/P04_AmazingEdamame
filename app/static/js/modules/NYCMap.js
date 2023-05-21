@@ -16,26 +16,42 @@ function makeCircles(x,y,z1,z2){
   circle.bindPopup(z1.toString() + "," + z2.toString());
 }
 
-function makeFinancialCircles(x,y,z1,z2){
+function makeFinancialCircles(x,y,z1){
   var circle = L.circle([x,y], {
     color: 'blue',
     fillColor: '#f03',
     fillOpacity: 0.5,
     radius: 200
   }).addTo(layerGroup);
-  circle.bindPopup(z1.toString() + "," + z2.toString());
+  circle.bindPopup(z1.toString());
+  circle.on('click', function(e) {
+    handleCircleSelection(circle);
+  });
 }
 
-var popup = L.popup();
+var selectedCircle = null;
 
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent(e.latlng.toString())
-        .openOn(layerGroup);
+function handleCircleSelection(circle) {
+  if (selectedCircle) {
+    selectedCircle.closePopup();
+    selectedCircle = null;
+  }
+  selectedCircle = circle;
+
+  var existingContent = circle.getPopup().getContent();
+
+  // Append the link to the separate page
+  var link = '<a href="/infoPage?data=' + encodeURIComponent(existingContent) + '">View Circle Data</a>';
+
+  // Set the updated content of the popup
+  circle.bindPopup(existingContent + '<br>' + link);
+
+  circle.openPopup();
+
+  selectedCircle = circle;
+
+  console.log('Selected circle:', selectedCircle);
 }
-
-map.on('click', onMapClick);
 
 var getDemographics = function(e){
   fetch(e).then(res => res.json()).then(data => {

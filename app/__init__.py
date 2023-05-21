@@ -68,10 +68,8 @@ def surveyredirect():
 
 @app.route("/survey", methods = ['GET','POST'])
 def survey(): 
-    print("0")
     if request.method == 'POST':
         user = "nothing"
-        print("0")
         neighborhood_preference = request.form.get('neighborhood')
         price_range = request.form.get('priceRange') 
         priority = request.form.get('priority') 
@@ -96,7 +94,9 @@ def info():
 #the actual route for more info
 @app.route('/infoPage')
 def infoPage():
-    return render_template("moreinfo.html")
+    data = request.args.get('data')
+    x = db.get_financial_specific(data)
+    return render_template("moreinfo.html",a=x)
 
 
 if __name__ == "__main__": #false if this file imported as module

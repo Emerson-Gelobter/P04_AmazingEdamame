@@ -117,6 +117,14 @@ def get_latitude_longitudes():
     db.close()
     return out
 
+def get_financial_specific(query):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    res = c.execute(f"SELECT * from financials_info WHERE Neighborhood = ?", (query,))
+    out = res.fetchall()
+    db.close()
+    return out
+
 
 def add_survey(username, neighborhood, price, priority, secpriority ):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
