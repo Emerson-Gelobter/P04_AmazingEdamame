@@ -41,6 +41,7 @@ def check_username(username):
     return False
 def check_username_survey(username):
     accounts = get_table_contents("surveyPreference")
+    print("checked")
     for account in accounts:
         if account[0] == username:
             return True
@@ -116,19 +117,22 @@ def get_latitude_longitudes():
     db.close()
     return out
 
-"""
+
 def add_survey(username, neighborhood, price, priority, secpriority ):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
+    print(c.fetchall())
     if (check_username_survey(username)):
-        c.execute("UPDATE surveyPreference SET (?, ?, ?, ?) WHERE username = ?(neighborhood, price, priority, secpriority, username)")
+        print(username)
+        c.execute('''DELETE FROM surveyPreference WHERE username = (?)''',(username))
+        c.execute('''INSERT INTO surveyPreference VALUES (?,?,?,?,?)''',(username, neighborhood, price, priority, secpriority))
     else:
-        c.execute('''INSERT INTO surveyPreference (username, neighborhood, price, priority, secpriority) VALUES (?,?,?,?,?)'''), (row[0],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13]))
+        c.execute('''INSERT INTO surveyPreference VALUES (?,?,?,?,?)''',(username, neighborhood, price, priority, secpriority))
     get_table_contents("surveyPreference")
     db.commit()
     db.close()
-print(add_survey("bob","one","12","one","one"))
-"""
+#print(add_survey("bob","one","12","one","one"))
+
 
 """
 def process():

@@ -62,17 +62,26 @@ def logout():
     session.pop('username', None)
     return render_template("login.html")
 
+@app.route("/survey_redirect")
+def surveyredirect(): 
+    return render_template("survey.html")
+
 @app.route("/survey", methods = ['GET','POST'])
 def survey(): 
-    user = "nothing"
-    neighborhood_preference = request.form.get('neighborhood')
-    price_range = request.form.get('priceRange') 
-    priority = request.form.get('priority') 
-    sec_priority = request.form.get('secondpriority') 
-    # if 'username' in session:
-    #     user = session['username']
-    # db.add_survey(user, neighborhood_preference, price_range, priority, sec_priority)
-    return render_template("survey.html")
+    print("0")
+    if request.method == 'POST':
+        user = "nothing"
+        print("0")
+        neighborhood_preference = request.form.get('neighborhood')
+        price_range = request.form.get('priceRange') 
+        priority = request.form.get('priority') 
+        sec_priority = request.form.get('secondpriority') 
+        print(sec_priority)
+        if 'username' in session:
+            user = session['username']
+            print("user:" + user)
+        db.add_survey(user, neighborhood_preference, price_range, priority, sec_priority)
+    return render_template("home_page.html")
 
 #helper function to return neighborhoods that would be shown on the city map
 @app.route("/neighborsMap")
