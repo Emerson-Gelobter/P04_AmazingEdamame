@@ -99,7 +99,6 @@ var getData = function(e){
 fetch(e).then(res => res.json()).then(data => {
 console.log(data);
 })};
-
 ==============================================================
 
 anjiniK -- 2022-05-10 21:17
@@ -130,16 +129,19 @@ emersonG -- 2022-05-15 13:12
 Worked on updating html pages and making them look more professional
 ==============================================================
 
-
 mayQ -- 2022-05-15 02:12
 --------------------------------------------------------------
 Worked on rebuilding my droplet. 
 ==============================================================
 
+danielL -- 2022-05-15 17:56
+--------------------------------------------------------------
+Added markers to leaflet map. Wrote functions to parse through returned data in JSON.
+==============================================================
+
 mayQ -- 2022-05-15 19:17
 --------------------------------------------------------------
 Worked on droplet. Project login screen works, but cannot get databases to work
-
 ==============================================================
 
 emersonG -- 2022-05-17 00:00
@@ -164,10 +166,21 @@ Worked more on front end, making survey and more info pages look better.
 TOUR: Many people were asking about how we incorporated the map and I showed them our use of the leaflet api and how we used d3 to visualize our data.
 ==============================================================
 
+danielL -- 2022-05-19 16:00
+--------------------------------------------------------------
+Made a better looking pie chart with Google Charts with one test data list. 
+==============================================================
+
 ==============================================================
 mayQ -- 2022-05-21 00:02
 --------------------------------------------------------------
 Created survey redirect route
 Survey results are now stored in the survey table.
 TOUR: some groups used chart.js. Saw things like sliders and checkboxes. Another group used javascript to make an interactive map. 
+==============================================================
+
+danielL -- 2022-05-21 14:53
+--------------------------------------------------------------
+Modified db functions, __init__, and js files such that for each neighborhood on the pie chart, a custom pie chart will show up in the additonal info link.
+Made histrograms for poverty index and median income. Improved layout and appearence of home page. Started work on new database with "sales" route and line charts.
 ==============================================================
