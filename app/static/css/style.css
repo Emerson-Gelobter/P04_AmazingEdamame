@@ -50,3 +50,7 @@
     margin-top: 0px;
     margin-bottom: 0px;
   }
+
+  #map {
+    height:700px; top:10px
+  }

@@ -21,9 +21,9 @@ var getDemographics = function(){
       ["Other",other * 100 ],
       ["Hispanic",hispanic * 100],
     ];
-    console.log(data1);
+    //console.log(data1);
     title = name.toString() + ", " + borough.toString();
-    console.log(title);
+    //console.log(title);
     drawChart(data1,title);
     };
 
