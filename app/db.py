@@ -129,9 +129,7 @@ def get_financial_specific(query):
 def add_survey(username, neighborhood, price, priority, secpriority ):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    print(c.fetchall())
     if (check_username_survey(username)):
-        print(username)
         c.execute('''DELETE FROM surveyPreference WHERE username = (?)''',(username))
         c.execute('''INSERT INTO surveyPreference VALUES (?,?,?,?,?)''',(username, neighborhood, price, priority, secpriority))
     else:
@@ -139,9 +137,6 @@ def add_survey(username, neighborhood, price, priority, secpriority ):
     get_table_contents("surveyPreference")
     db.commit()
     db.close()
-#print(add_survey("bob","one","12","one","one"))
-
-
 """
 def process():
     with open("static/datasets/financials.csv", "r") as financials_csv:
