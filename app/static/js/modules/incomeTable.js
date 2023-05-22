@@ -10,10 +10,10 @@ var getpIndexandIncome = function() {
         var borough = inner[2];
         var pindex = inner[5];
         var medianIncome = inner[6];
-        console.log(borough, name, pindex, medianIncome);
+        //console.log(borough, name, pindex, medianIncome);
         input.push([name + ", " + borough, { v: pindex, f: pindex.toString() }, { v: medianIncome, f: "$" + medianIncome.toString() }]);
     }
-    console.log(input);
+    //console.log(input);
     drawTable(input);
     });
   };

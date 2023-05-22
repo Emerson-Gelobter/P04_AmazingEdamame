@@ -125,6 +125,13 @@ def get_financial_specific(query):
     db.close()
     return out
 
+def get_borough_specific(borough,year,type):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    res = c.execute(f"SELECT * from sales_info WHERE Borough = ? AND Year = ? AND Type=?", (borough,year,type))
+    out = res.fetchall()
+    db.close()
+    return out
 
 def add_survey(username, neighborhood, price, priority, secpriority ):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)

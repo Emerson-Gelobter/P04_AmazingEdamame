@@ -91,10 +91,15 @@ def neighborsMap():
 def info():
     return db.get_table_contents("financials_info")
 
-#helper function to return neighborhoods that would be shown on the city map
+#helper function to return sales from sales_info table in db
 @app.route('/sales')
 def sales():
-    return db.get_table_contents("sales_info")
+    queens = db.get_borough_specific("QUEENS",2021,"01-ONE FAMILY DWELLINGS")
+    manhattan = db.get_borough_specific("MANHATTAN",2021,"01-ONE FAMILY DWELLINGS")
+    staten = db.get_borough_specific("STATEN ISLAND",2021, "01-ONE FAMILY DWELLINGS")
+    bronx = db.get_borough_specific("BRONX",2021, "01-ONE FAMILY DWELLINGS")
+    brooklyn = db.get_borough_specific("BROOKLYN",2021, "01-ONE FAMILY DWELLINGS")
+    return render_template("sales.html",queens=queens,staten_island=staten,manhattan=manhattan,bronx=bronx,brooklyn=brooklyn)
 
 #the actual route for more info
 @app.route('/infoPage')
