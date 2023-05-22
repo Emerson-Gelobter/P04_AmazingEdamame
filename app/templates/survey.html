@@ -42,9 +42,15 @@
                 <p class="text-center"><strong>Survey:</strong></p>
 
                 <div class="form-group mb-2">
-                  <label for="neighborhood">Neighborhood Preference</label>
-                  <input type="Neighborhood" class="form-control" id="neighborhood" name = "neighborhood" aria-describedby="neighborhood" placeholder="Enter neighborhood">
-                  <small id="neighborhood" class="form-text text-muted">Enter your prefered neighborhood.</small>
+                  <label for="neighborhood">Borough Preference</label>
+                  <select id="neighborhood" name = "neighborhoode" class="form-control">
+                    <option selected>Manhattan</option>
+                    <option>Brooklyn</option>
+                    <option>Queens</option>
+                    <option>The Bronx</option>
+                    <option>Staten Island</option>
+                  </select>
+                  <small id="neighborhood" class="form-text text-muted">Enter your prefered borough.</small>
                 </div>
 
 
@@ -56,24 +62,6 @@
                       <option>800-900k</option>
                       <option>900k-1.2m</option>
                       <option>1.2m+</option>
-                    </select>
-                  </div>
-                  <div class="form-group mb-2">
-                    <label for="priority">Priority</label>
-                    <select id="priority" name = "priority"class="form-control">
-                      <option selected>What do you deem most important?</option>
-                      <option>Price</option>
-                      <option>Crime Rate</option>
-                      <option>Commute</option>
-                    </select>
-                  </div>
-                  <div class="form-group mb-2">
-                    <label for="secondpriority">Second Priority</label>
-                    <select id="secondpriority" name = "secondpriority" class="form-control">
-                      <option selected>Second importance?</option>
-                      <option>Price</option>
-                      <option>Crime Rate</option>
-                      <option>Commute</option>
                     </select>
                   </div>
 
