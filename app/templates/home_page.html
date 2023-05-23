@@ -49,41 +49,68 @@
       </h3>
      -->
     <br>
-  <div class = "card">
-    <div class = "card-header">
-      <h3>Toggle to Change Databases</h3>
-    </div>
-    <div class = card-body>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="neighborhoods">
-      <label class="form-check-label" for="flexRadioDefault1">
-        Neighborhoods
-      </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="financials">
-      <label class="form-check-label" for="flexRadioDefault2">
-        Demographics and Financial Info
-      </label>
+
+    
+  <div class = "card" style="justify-content: center;">
+    <div class="text-center"> 
+      <div class = "card-header">
+        <h3>Toggle to Change Databases</h3>
+      </div>
+      <div class = card-body>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="neighborhoods">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Neighborhoods
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="financials">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Demographics and Financial Info
+          </label>
+        </div>
+      </div>
     </div>
   </div>
+  
+  <div class="h-50">    
+    <div class="w-50 p-3">
+      <div class="mx-center" id="map">
+        <script src = "../static/js/modules/NYCMap.js"></script>
+      </div>
+    </div>
   </div>
 
-    <div id="map">
-      <script src = "../static/js/modules/NYCMap.js"></script>
+  <!-- class="rounded mx-auto d-block"  -->
+
+    <br>
+    <br>
+    <br>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <div id="table_div">
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+              <script src = "../static/js/modules/incomeTable.js"></script>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div id="histo_div" style="width: 900px; height: 500px;">
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+              <script src = "../static/js/modules/histoCharts.js"></script>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <br>
-    <br>
-    <br>
-
-    <br>
-    <br>
-    <br>
-
-    <div id="table_div">
+    <!-- <div id="table_div">
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script src = "../static/js/modules/incomeTable.js"></script>
+        <script src = "../static/js/modules/incomeTable.js"></script> -->
     </div>
 
     <div id="histo_div" style="width: 900px; height: 500px;">
