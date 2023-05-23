@@ -64,7 +64,15 @@ def logout():
 
 @app.route("/survey_redirect")
 def surveyredirect(): 
-    return render_template("survey.html")
+    if verify_session():
+        return render_template("survey.html")
+    return render_template("error.html",msg="Session Expired")
+
+@app.route("/financial_info")
+def financialInfo(): 
+    if verify_session():
+        return render_template("financialInfo.html")
+    return render_template("error.html",msg="Session Expired")
 
 @app.route("/survey", methods = ['GET','POST'])
 def survey(): 
@@ -77,29 +85,43 @@ def survey():
         print(sec_priority)
         if 'username' in session:
             user = session['username']
-            print("user:" + user)
         db.add_survey(user, neighborhood_preference, price_range, priority, sec_priority)
     return render_template("home_page.html")
 
-#helper function to return neighborhoods that would be shown on the city map
+#ENDPOINT
 @app.route("/neighborsMap")
 def neighborsMap():
     return db.get_table_contents("neighborhoods")
 
-#helper function to return neighborhoods that would be shown on the city map
+#ENDPOINT
 @app.route('/info')
 def info():
     return db.get_table_contents("financials_info")
 
-#helper function to return sales from sales_info table in db
-@app.route('/sales')
+#function to return sales from sales_info table in db
+@app.route('/sales', methods=['POST'])
 def sales():
-    queens = db.get_borough_specific("QUEENS",2021,"01-ONE FAMILY DWELLINGS")
-    manhattan = db.get_borough_specific("MANHATTAN",2021,"01-ONE FAMILY DWELLINGS")
-    staten = db.get_borough_specific("STATEN ISLAND",2021, "01-ONE FAMILY DWELLINGS")
-    bronx = db.get_borough_specific("BRONX",2021, "01-ONE FAMILY DWELLINGS")
-    brooklyn = db.get_borough_specific("BROOKLYN",2021, "01-ONE FAMILY DWELLINGS")
-    return render_template("sales.html",queens=queens,staten_island=staten,manhattan=manhattan,bronx=bronx,brooklyn=brooklyn)
+    borough = request.form.get("borough")
+    priceRange = request.form.get("priceRange")
+    propertyType = request.form.get("type")
+    if priceRange == "Less than 400k":
+        priceRange = (0, 400000)
+    elif priceRange == "400k-600k":
+        priceRange = (400000, 600000)
+    elif priceRange == "600k-800k":
+        priceRange = (600000, 800000)
+    elif priceRange == "800k-1.1m":
+        priceRange = (800000, 1100000)
+    elif priceRange == "1.1m-1.5m":
+        priceRange = (1100000, 1500000)
+    elif priceRange == "1.5m-2m":
+        priceRange = (1500000, 2000000)
+    elif priceRange == "2m+":
+        priceRange = (2000000, 100000000)
+    specific = db.get_borough_specific(borough, priceRange,propertyType)
+    if len(specific) > 0:
+        return render_template("sales.html",contents=specific)
+    return render_template("error.html",msg="No Houses Were Found Matching the Criteria")
 
 #the actual route for more info
 @app.route('/infoPage')

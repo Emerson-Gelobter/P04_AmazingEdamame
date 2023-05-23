@@ -18,7 +18,6 @@ var getpIndexandIncome = function() {
     });
   };
 
-// getpIndexandIncome();
 // Set a callback to run when the Google Visualization API is loaded.
 google.charts.setOnLoadCallback(getpIndexandIncome);
 

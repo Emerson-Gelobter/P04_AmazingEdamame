@@ -125,10 +125,14 @@ def get_financial_specific(query):
     db.close()
     return out
 
-def get_borough_specific(borough,year,type):
+def get_borough_specific(borough, priceRange, propertyType):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    res = c.execute(f"SELECT * from sales_info WHERE Borough = ? AND Year = ? AND Type=?", (borough,year,type))
+    borough = borough.upper()
+    propertyType = propertyType
+    priceRange_min = priceRange[0]
+    priceRange_max = priceRange[1]
+    res = c.execute(f"SELECT * from sales_info WHERE Borough = ? AND Year = ? AND Type=? AND Median >= ? AND Median <= ?;", (borough,"2021",propertyType,priceRange_min,priceRange_max))
     out = res.fetchall()
     db.close()
     return out

@@ -15,7 +15,7 @@
 
 
         <body id="foo">
-            <li> whee?</li>
+            <h1>Amazing Edamame</h1>
 
 
 
@@ -23,56 +23,64 @@
         <div class="mx-0 mx-sm-auto">
           <div class="card">
             <div class="card-header bg-primary">
-              <h5 class="card-title text-white mt-2" id="exampleModalLabel">What are your housing requirements?</h5>
+              <h5 class="card-title text-white mt-2" id="exampleModalLabel">Housing Preferences Form</h5>
             </div>
             <div class="modal-body">
               <div class="text-center">
                 <i class="far fa-file-alt fa-4x mb-3 text-primary"></i>
-                <p>
-                  <strong>What fits you best</strong>
-                </p>
-                <p>
-                  <strong>Enter your preferences</strong>
-                </p>
               </div>
 
-              <hr />
+              <br><br>
 
-              <form class="px-4" action="/survey" method = "POST">
+              <form class="px-4" action="/sales" method="post">
                 <p class="text-center"><strong>Survey:</strong></p>
 
                 <div class="form-group mb-2">
-                  <label for="neighborhood">Borough Preference</label>
-                  <select id="neighborhood" name = "neighborhoode" class="form-control">
+                  <label for="borough">Borough Preference</label>
+                  <select id="borough" name = "borough" class="form-control">
                     <option selected>Manhattan</option>
                     <option>Brooklyn</option>
                     <option>Queens</option>
-                    <option>The Bronx</option>
+                    <option>Bronx</option>
                     <option>Staten Island</option>
                   </select>
-                  <small id="neighborhood" class="form-text text-muted">Enter your prefered borough.</small>
+                  <small id="borough" class="form-text text-muted">Enter your prefered borough.</small>
                 </div>
 
 
                 <div class="form-group mb-2">
                     <label for="priceRange">Price Range</label>
                     <select id="priceRange" name = "priceRange" class="form-control">
-                      <option selected>Choose...</option>
+                      <option selected>Less than 400k</option>
+                      <option>400k-600k</option>
                       <option>600k-800k</option>
-                      <option>800-900k</option>
-                      <option>900k-1.2m</option>
-                      <option>1.2m+</option>
+                      <option>800k-1.1m</option>
+                      <option>1.1m-1.5m</option>
+                      <option>1.5m-2m</option>
+                      <option>2m+</option>
                     </select>
+                    <small id="priceRange" class="form-text text-muted">Enter your prefered price range.</small>
                   </div>
+
+                  <div class="form-group mb-2">
+                    <label for="type">House Type</label>
+                    <select id="type" name = "type" class="form-control">
+                      <option selected>01-ONE FAMILY DWELLINGS</option>
+                      <option>02-TWO FAMILY DWELLINGS</option>
+                      <option>03-THREE FAMILY DWELLINGS</option>
+                    </select>
+                    <small id="type" class="form-text text-muted">Enter your prefered type.</small>
+                  </div>
+
+                  <br>
+                  <br>
+                  <br>
 
                   <div class="card-footer text-end">
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
-
-
-                <!-- Message input -->
-
               </form>
+
             </div>
           </div>
         </div>

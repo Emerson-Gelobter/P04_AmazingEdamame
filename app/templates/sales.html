@@ -18,22 +18,16 @@
         <h1 class="display-1"><u>Sales Info</u></h1>
       </div>
 
-      <div id="lines_div">
+      <div id="table_div">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script>
-            var queens = JSON.parse('{{queens | tojson }}');
-            var bronx = JSON.parse('{{bronx | tojson }}');
-            var brooklyn = JSON.parse('{{brooklyn | tojson }}');
-            var manhattan = JSON.parse('{{manhattan | tojson }}');
-            var staten_island = JSON.parse('{{staten_island | tojson }}');
-          </script>
-          <script src = "../static/js/modules/lineChart.js"></script>
+          var data = JSON.parse('{{contents | tojson }}');
+        </script>
+        <script src = "../static/js/modules/saleCharts.js"></script>
       </div>
 
     </body>
 
-    <form action="/">
-        <input class="btn btn-outline-danger" type=submit value="Back to home">
-    </form>
+    <form action = "/survey_redirect"> <input type = "submit" value = "back" class="btn btn-link"></form>
 
 </html>

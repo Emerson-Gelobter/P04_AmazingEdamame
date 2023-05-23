@@ -185,8 +185,12 @@ Modified db functions, __init__, and js files such that for each neighborhood on
 Made histrograms for poverty index and median income. Improved layout and appearence of home page. Started work on new database with "sales" route and line charts.
 ==============================================================
 
-
 emersonG -- 2022-05-21 00:36
 --------------------------------------------------------------
 Worked on making home page layout and making navbar
+==============================================================
+
+danielL -- 2022-05-22 22:56
+--------------------------------------------------------------
+Finished the survey that asks for price preference, borough preference, and house type (and subsequently return matching results). Improved layout and appearence of various pages.
 ==============================================================

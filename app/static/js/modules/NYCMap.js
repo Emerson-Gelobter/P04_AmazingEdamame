@@ -41,7 +41,7 @@ function handleCircleSelection(circle) {
   var existingContent = circle.getPopup().getContent();
 
   // Append the link to the separate page
-  var link = '<a href="/infoPage?data=' + encodeURIComponent(existingContent) + '">View Circle Data</a>';
+  var link = '<a href="/infoPage?data=' + encodeURIComponent(existingContent) + '">View Additional Info</a>';
 
   // Set the updated content of the popup
   circle.bindPopup(existingContent + '<br>' + link);
@@ -50,7 +50,7 @@ function handleCircleSelection(circle) {
 
   selectedCircle = circle;
 
-  console.log('Selected circle:', selectedCircle);
+  //console.log('Selected circle:', selectedCircle);
 }
 
 var getDemographics = function(e){
