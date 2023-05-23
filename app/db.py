@@ -137,6 +137,17 @@ def get_borough_specific(borough, priceRange, propertyType):
     db.close()
     return out
 
+def get_neighborhoods():
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    propertyType = "01-ONE FAMILY DWELLINGS"
+    name = c.execute(f"SELECT neighborhood from sales_info WHERE Year = ? AND Type =?;", ("2021", propertyType))
+    info = name.fetchall()
+    db.close ()
+    return info
+
+
+
 def add_survey(username, neighborhood, price, priority, secpriority ):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
