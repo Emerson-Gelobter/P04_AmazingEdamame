@@ -25,7 +25,7 @@ def get_lat_long(name, borough):
 
     return latitude, longitude
 
-#print(get_lat_long('Pelham Parkway, Morris Park & Laconia','Bronx'))
+print(get_lat_long('Pelham Parkway, Morris Park & Laconia','Bronx'))
 
 """
 params ={

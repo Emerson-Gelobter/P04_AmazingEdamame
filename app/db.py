@@ -1,6 +1,6 @@
 import sqlite3
 import csv
-import geo
+#import geo
 
 DB_FILE = "zetten.db"
 
