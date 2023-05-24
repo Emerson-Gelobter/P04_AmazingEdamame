@@ -5,7 +5,7 @@ var getSales = function() {
     var input = [];
     for (let i = 0; i < data.length; i++) {
         var inner = data[i];
-        console.log(inner);
+        //console.log(inner);
         var year = inner[8];
         var name = inner[1] + ", " + inner[0];
         var typeDwelling = inner[2];
