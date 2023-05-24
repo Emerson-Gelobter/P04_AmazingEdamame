@@ -151,7 +151,6 @@ def search_bar(name):
     c = db.cursor()
     name = c.execute(f"SELECT * from sales_info WHERE (Year = 2021 OR Year = 2020 OR Year = 2019) AND Neighborhood = ? ;", (name,))
     info = name.fetchall()
-    print(info)
     db.close()
     return info
 

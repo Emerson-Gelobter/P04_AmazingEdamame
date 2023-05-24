@@ -21,38 +21,43 @@
       
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
   </head>
-    <body>
 
-      <title> Home Page</title>
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Amazing Edamame</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <li class="nav">
+ <body>
+    <title> Home Page</title>
+
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Amazing Edamame</a>
+        <!-- we can't figure out how to make the toggle to work  -->
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navHeaderCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navHeaderCollapse"> -->
+          <ul class="navbar-nav navHeaderCollapse">
+            <li class="nav-item">
               <a class="nav-link active" style = "color : black" href="/home">Home</a>
             </li>
-            <li class="nav">
+            <li class="nav-item">
               <a class="nav-link active" style = "color : black" href="/financial_info">Financials</a>
             </li>
-            <li class="nav">
+            <li class="nav-item">
               <a class="nav-link active" style = "color : black" href="/survey_redirect">Survey</a>
             </li>
-            <div class="typeahead">
-              <form action="/searchBar">
-                <input type="search" class="form-control rounded typeahead" data-provide="typeahead" name="selectedName" placeholder="Search for a NYC zone" aria-label="Search" aria-describedby="search-addon" />
-                <button type="submit" style="margin-left: 800px;" formaction="/searchBar" class="btn btn-outline-primary">search</button>
-              </form>
-            </div>
-            <form action="/logout">
-              <button class="btn btn-danger btn-sm" style="margin-left: 35px;" type="submit">Logout</button>
+          </ul>
+          <div class="typeahead">
+            <form action="/searchBar">
+              <input type="search" class="form-control rounded typeahead" data-provide="typeahead" name="selectedName" placeholder="Search for a NYC zone" aria-label="Search" aria-describedby="search-addon" />
+              <button type="submit" style="margin-left: 870px;" formaction="/searchBar" class="btn btn-outline-primary">search</button>
             </form>
           </div>
-        </div>
-      </nav>
-    </head>
+          <form action="/logout">
+            <button class="btn btn-danger btn-sm" style="margin-left: 35px;" type="submit">Logout</button>
+          </form>
+        <!-- </div> -->
+      </div>
+    </nav>
+   </head>
+   <body>
 
     <script>
       var data = JSON.parse('{{names | tojson }}');
