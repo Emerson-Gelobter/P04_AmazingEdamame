@@ -17,55 +17,11 @@
     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
     crossorigin=""></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js">
-    </script>
-    <style>
-      .typeahead {
-          width: 50%;
-          top: 60px !important;
-          left: 50px !important;
-      }
-  </style>
-      
-    
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+  </head>
     <body>
-    
-
-      <script>
-        var data = JSON.parse('{{names | tojson }}');
-        var neighborhoods = [];
-        for(i = 0; i<data.length; i++){
-          neighborhoods.push(data[i][0]);
-          
-
-        }
-        console.log(neighborhoods);
-        // Initializes  input( name of states)
-        // with a typeahead
-        var $input = $(".typeahead");
-        $input.typeahead({
-            source: neighborhoods,
-            autoSelect: true,
-        });
-
-        $input.change(function () {
-            var current = $input.typeahead("getActive");
-            matches = [];
-
-            if (current) {
-
-                // Some item from your input matches
-                // with entered data
-                if (current.name == $input.val()) {
-                    matches.push(current.name);
-                }
-            }
-        });
-    </script>
 
       <title> Home Page</title>
       <nav class="navbar navbar-expand-lg bg-light">
@@ -85,16 +41,45 @@
               <a class="nav-link active" style = "color : black" href="/survey_redirect">Survey</a>
             </li>
             <div class="typeahead">
-              <input type="search" class="form-control rounded typeahead" data-provide="typeahead" placeholder="Search for a NYC zone" aria-label="Search" aria-describedby="search-addon" />
-              <button type="button" class="btn btn-outline-primary">search</button>
+              <form action="/searchBar">
+                <input type="search" class="form-control rounded typeahead" data-provide="typeahead" name="selectedName" placeholder="Search for a NYC zone" aria-label="Search" aria-describedby="search-addon" />
+                <button type="submit" style="margin-left: 800px;" formaction="/searchBar" class="btn btn-outline-primary">search</button>
+              </form>
             </div>
             <form action="/logout">
-              <button class="btn btn-danger btn-sm" style="margin-left: 5px;" type="submit">Logout</button>
+              <button class="btn btn-danger btn-sm" style="margin-left: 35px;" type="submit">Logout</button>
             </form>
           </div>
         </div>
       </nav>
     </head>
+
+    <script>
+      var data = JSON.parse('{{names | tojson }}');
+      var neighborhoods = [];
+      for(i = 0; i<data.length; i++){
+        neighborhoods.push(data[i][0]);
+      }
+
+      var $input = $(".typeahead");
+      $input.typeahead({
+          source: neighborhoods,
+          autoSelect: true,
+      });
+
+      $input.change(function () {
+          var current = $input.typeahead("getActive");
+          matches = [];
+
+          if (current) {
+              // Some item from your input matches
+              // with entered data
+              if (current.name == $input.val()) {
+                  matches.push(current.name);
+              }
+          }
+      });
+  </script>
 
       <!-- <h3>
       Welcome, {{username}}
@@ -124,9 +109,9 @@
     
   </div>
   
-      <div id="map">
-        <script src = "../static/js/modules/NYCMap.js"></script>
-      </div>
+    <div id="map">
+      <script src = "../static/js/modules/NYCMap.js"></script>
+    </div>
 
   <!-- class="rounded mx-auto d-block"  -->
 

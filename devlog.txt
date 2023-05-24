@@ -194,3 +194,9 @@ danielL -- 2022-05-22 22:56
 --------------------------------------------------------------
 Finished the survey that asks for price preference, borough preference, and house type (and subsequently return matching results). Improved layout and appearence of various pages.
 ==============================================================
+
+danielL -- 2022-05-22 22:04
+--------------------------------------------------------------
+Finished search results and search bar. Will return price trends of neighborhood and all other associated data in a table upon submission.
+==============================================================
+

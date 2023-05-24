@@ -61,5 +61,10 @@
     left: 0px !important;
 }
 
+  .typeahead {
+    width: 70%;
+    top: 90px !important;
+    left: 300px !important;
+  }
 
 

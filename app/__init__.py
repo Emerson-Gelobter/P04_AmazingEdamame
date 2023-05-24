@@ -10,7 +10,7 @@ app.secret_key = os.urandom(32)
 
 @app.route('/')
 def index():
-    x = neighborhood_names()
+    x = db.get_neighborhoods()
     if 'username' in session:
         return render_template("home_page.html",username = session['username'], names = x)
     return render_template('login.html')
@@ -21,10 +21,10 @@ def login():
     #otherwise redirect to error page which will have a button linking to the login page
     username = request.form.get('username')
     password = request.form.get('password')
-    x = neighborhood_names()
     if db.verify_account(username,password):
         session['username'] = username
         session['password'] = password
+        x = db.get_neighborhoods()
         return render_template("home_page.html",username = session['username'], names = x)
     if request.form.get('submit_button') is not None:
         return render_template("registration.html")
@@ -45,14 +45,24 @@ def register():
 
 @app.route('/home')
 def home():
-    x = neighborhood_names()
     if 'username' not in session:
         return render_template("login.html")
     username = session['username']
     password = session['password']
-    
     if db.verify_account(username, password):
+        x = db.get_neighborhoods()
         return render_template('home_page.html',username = session['username'], names = x)
+    
+@app.route('/searchBar')
+def searchBar():
+    if 'username' not in session:
+        return render_template("login.html")
+    username = session['username']
+    password = session['password']
+    if db.verify_account(username, password):
+        name = request.args.get("selectedName")
+        x = db.search_bar(name)
+        return render_template('searchResults.html', names = x)
 
 
 def verify_session():
@@ -60,10 +70,6 @@ def verify_session():
         if db.verify_account(session['username'], session['password']):
             return True
     return False
-
-def neighborhood_names():
-    x = db.get_neighborhoods()
-    return x
 
 @app.route("/logout")
 def logout():
@@ -84,7 +90,6 @@ def financialInfo():
 
 @app.route("/survey", methods = ['GET','POST'])
 def survey(): 
-    x = neighborhood_names()
     if request.method == 'POST':
         user = "nothing"
         neighborhood_preference = request.form.get('neighborhood')
@@ -95,6 +100,7 @@ def survey():
         if 'username' in session:
             user = session['username']
         db.add_survey(user, neighborhood_preference, price_range, priority, sec_priority)
+    x = db.get_neighborhoods()
     return render_template("home_page.html", names = x)
 
 #ENDPOINT

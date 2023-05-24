@@ -141,12 +141,19 @@ def get_neighborhoods():
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     propertyType = "01-ONE FAMILY DWELLINGS"
-    name = c.execute(f"SELECT neighborhood from sales_info WHERE Year = ? AND Type =?;", ("2021", propertyType))
+    name = c.execute(f"SELECT Neighborhood from sales_info WHERE Year = ? AND Type =?;", ("2021", propertyType))
     info = name.fetchall()
-    db.close ()
+    db.close()
     return info
 
-
+def search_bar(name):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    name = c.execute(f"SELECT * from sales_info WHERE (Year = 2021 OR Year = 2020 OR Year = 2019) AND Neighborhood = ? ;", (name,))
+    info = name.fetchall()
+    print(info)
+    db.close()
+    return info
 
 def add_survey(username, neighborhood, price, priority, secpriority ):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
