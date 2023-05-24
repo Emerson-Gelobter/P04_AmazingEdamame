@@ -30,7 +30,8 @@ def surveyredirect():
 
 @app.route("/financial_info")
 def financialInfo(): 
-    return render_template("financialInfo.html")
+    x = db.get_neighborhoods()
+    return render_template("financialInfo.html",names=x)
 
 
 @app.route("/survey", methods = ['GET','POST'])

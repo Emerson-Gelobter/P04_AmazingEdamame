@@ -202,11 +202,11 @@ Finished the survey that asks for price preference, borough preference, and hous
 
 danielL -- 2022-05-22 22:04
 --------------------------------------------------------------
-Finished search results and search bar. Will return price trends of neighborhood and all other associated data in a table upon submission.
+Finished search results and search bar. Will return price trends of neighborhood and all other associated data in a table upon submission. Finished some organization and cleaning.
 ==============================================================
 
 mayQ -- 2022-05-23 23:19
 --------------------------------------------------------------
-made minor CSS changes with Anjini
+made minor CSS changes with Anjini.
 ==============================================================
 
