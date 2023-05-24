@@ -14,7 +14,34 @@
     </head>
 
 <body>
-
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/financial_info">Amazing Edamame</a>
+      <!-- we can't figure out how to make the toggle to work  -->
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navHeaderCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navHeaderCollapse"> -->
+        <ul class="navbar-nav navHeaderCollapse">
+          <li class="nav-item">
+            <a class="nav-link active" style = "color : black" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style = "color : black" href="/financial_info">Financials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style = "color : black" href="/survey_redirect">Survey</a>
+          </li>
+        </ul>
+        <div class="typeahead">
+          <form action="/searchBar">
+            <input type="search" class="form-control rounded typeahead" data-provide="typeahead" name="selectedName" placeholder="Search for a NYC zone" aria-label="Search" aria-describedby="search-addon" />
+            <button type="submit" formaction="/searchBar" class="btn btn-outline-primary ms-md-2">search</button>
+          </form>
+        </div>
+      <!-- </div> -->
+    </div>
+  </nav>
     <div class="text-center">
         <h1 class="display-1"><u>Poverty Indexes and Average Incomes</u></h1>
       </div>
