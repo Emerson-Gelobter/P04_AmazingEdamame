@@ -56,12 +56,6 @@ def verify_account(username, password):
 
 def setup():
 
-    users_header = ("(username TEXT, password TEXT)")
-    create_table("userInfo",users_header)
-    
-    survey_header = ("(username TEXT, neighborhood TEXT, price TEXT, priority TEXT, secpriority TEXT)")
-    create_table("surveyPreference", survey_header)
-
     neighbors_header = ("(Latitude FLOAT,Longitude FLOAT,Name TEXT,Borough TEXT)")
     create_table("neighborhoods",neighbors_header)
     with open ("static/datasets/neighborhoods.csv","r") as neighbors_csv:
@@ -154,17 +148,6 @@ def search_bar(name):
     db.close()
     return info
 
-def add_survey(username, neighborhood, price, priority, secpriority ):
-    db = sqlite3.connect(DB_FILE, check_same_thread=False)
-    c = db.cursor()
-    if (check_username_survey(username)):
-        c.execute('''DELETE FROM surveyPreference WHERE username = (?)''',(username))
-        c.execute('''INSERT INTO surveyPreference VALUES (?,?,?,?,?)''',(username, neighborhood, price, priority, secpriority))
-    else:
-        c.execute('''INSERT INTO surveyPreference VALUES (?,?,?,?,?)''',(username, neighborhood, price, priority, secpriority))
-    get_table_contents("surveyPreference")
-    db.commit()
-    db.close()
 """
 def process():
     with open("static/datasets/financials.csv", "r") as financials_csv:

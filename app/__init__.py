@@ -33,19 +33,6 @@ def financialInfo():
     x = db.get_neighborhoods()
     return render_template("financialInfo.html",names=x)
 
-
-@app.route("/survey", methods = ['GET','POST'])
-def survey(): 
-    if request.method == 'POST':
-        user = "nothing"
-        neighborhood_preference = request.form.get('neighborhood')
-        price_range = request.form.get('priceRange') 
-        priority = request.form.get('priority') 
-        sec_priority = request.form.get('secondpriority') 
-        db.add_survey(user, neighborhood_preference, price_range, priority, sec_priority)
-    x = db.get_neighborhoods()
-    return render_template("home_page.html", names = x)
-
 #ENDPOINT
 @app.route("/neighborsMap")
 def neighborsMap():
